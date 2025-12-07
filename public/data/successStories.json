@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Ayesha Rahman",
+    "country": "Bangladesh",
+    "scholarshipName": "Asian Excellence Full Scholarship",
+    "year": 2024,
+    "description": "Ayesha grew up in Mymensingh with resources but a strong passion for technology. She learned programming using a laptop and free online tutorials late at night. Her academic performance and national competition participation strengthened her confidence. Her scholarship application reflected her resilience and dedication. Today, she continues to pursue her studies with a dream of supporting students in Bangladesh.",
+    "image": "https://randomuser.me/api/portraits/women/25.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Riyad Hasan",
+    "country": "Bangladesh",
+    "scholarshipName": "Global Leaders Merit Award",
+    "year": 2023,
+    "description": "Riyad managed a job while preparing for competitive scholarship exams. He studied during breaks and nights, to create a better future for himself. His work in youth entrepreneurship programs strengthened his profile. His application showcased his dedication and long-term goals in business and social development. Winning the scholarship allowed him to gain experience and mentor other students in Bangladesh.",
+    "image": "https://randomuser.me/api/portraits/men/10.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Sara Malik",
+    "country": "Pakistan",
+    "scholarshipName": "Women in STEM Scholarship",
+    "year": 2024,
+    "description": "Sara always enjoyed mathematics but faced pressure to choose career paths. She volunteered with NGOs and used her data skills to support community projects. During lockdown, she built a tool that improved relief distribution, gaining recognition. Her scholarship application highlighted her commitment to using technology for social good. She now focuses on creating accessible data tools for communities.",
+    "image": "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  {
+    "id": 4,
+    "title": "John Kim",
+    "country": "South Korea",
+    "scholarshipName": "OECD International Achievers Grant",
+    "year": 2023,
+    "description": "John’s early experiences with economic challenges inspired his interest in public policy. He conducted research on income inequality and presented his work at an international summit. His professors encouraged him to pursue global opportunities. His scholarship application emphasized sustainable economic reform and community service. Today, he contributes to major policy projects aimed at supporting vulnerable populations.",
+    "image": "https://randomuser.me/api/portraits/men/34.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Mariam Khan",
+    "country": "India",
+    "scholarshipName": "Future Innovators Scholarship",
+    "year": 2024,
+    "description": "Mariam was fascinated by artificial intelligence from a young age. She created an assistive device for visually impaired students, earning recognition and awards. Her strong commitment to inclusive technology made her scholarship application stand out. She emphasized her long-term goal of improving accessibility through innovation. Today, she continues developing affordable assistive tools for people with disabilities.",
+    "image": "https://randomuser.me/api/portraits/women/8.jpg"
+  },
+  {
+    "id": 6,
+    "title": "David Lopez",
+    "country": "Brazil",
+    "scholarshipName": "International Students Tuition Award",
+    "year": 2023,
+    "description": "David grew up in a rural village where water scarcity shaped his early life. He volunteered with engineers to design sustainable water systems for his community. His innovative low-cost filtration device helped many families access clean water. His scholarship application focused on his commitment to environmental improvement. He now works on eco-friendly infrastructure solutions for developing regions.",
+    "image": "https://randomuser.me/api/portraits/men/19.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Lina Ahmed",
+    "country": "Egypt",
+    "scholarshipName": "African Talent Advancement Scholarship",
+    "year": 2024,
+    "description": "Lina grew up in Cairo where education was competitive and demanding. She volunteered to teach digital literacy to young girls in her neighborhood. Her weekend workshops soon helped students who lacked access to basic learning tools. Her scholarship application highlighted her leadership and community impact. She now aims to expand her digital learning programs across Egypt.",
+    "image": "https://randomuser.me/api/portraits/women/8.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Kevin Matthews",
+    "country": "United States",
+    "scholarshipName": "Global Sustainability Scholars Award",
+    "year": 2023,
+    "description": "Kevin’s passion for environmental conservation began when he saw pollution in local rivers. He led community clean-up projects and researched plastic waste reduction. His findings were later published in a youth innovation journal. His scholarship application focused on long-term ecological solutions. Today, he works on sustainable recycling strategies with global environmental teams.",
+    "image": "https://randomuser.me/api/portraits/men/22.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Hiroshi Tanaka",
+    "country": "Japan",
+    "scholarshipName": "Pacific Innovators Academic Grant",
+    "year": 2024,
+    "description": "Hiroshi spent his childhood building small robotic prototypes. In college, he developed affordable robotic hands for patient rehabilitation. His innovative approach received praise from mentors and medical professionals. His scholarship application highlighted his commitment to accessible healthcare technology. He now works on advanced robotic systems to support therapy and recovery worldwide.",
+    "image": "https://randomuser.me/api/portraits/women/5.jpg"
+  }
+]
