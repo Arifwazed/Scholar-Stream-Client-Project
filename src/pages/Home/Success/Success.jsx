@@ -9,13 +9,13 @@ import SuccessCard from './SuccessCard';
 const Success = ({storiesPromise}) => {
     const stories = use(storiesPromise);
     return (
-        <div className='py-20 border'>
-            <div className='text-center my-8'>
+        <div className='py-12 border'>
+            <div className='text-center mb-8'>
                 <h1 className='text-primary text-4xl md:text-5xl font-semibold'>Real Scholarship Success Stories</h1>
                 <p className='my-3 text-lg md:text-xl text-gray-600'>Discover inspiring journeys from students who turned challenges into opportunities through scholarships.</p>
             </div>
             
-            
+            <div className='px-4 md:px-0'>
                 <Swiper
                     loop={true}
                     effect={'coverflow'}
@@ -54,6 +54,7 @@ const Success = ({storiesPromise}) => {
                     }
                     
                 </Swiper>
+            </div>
         </div>
     );
 };

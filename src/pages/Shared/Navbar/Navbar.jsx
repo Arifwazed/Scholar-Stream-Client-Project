@@ -24,7 +24,7 @@ const Navbar = () => {
                 </div>
                <div className='flex items-end '>                    
                     <img src={logoImg3} width={70} alt="" />
-                    <h2 className='font-bold text-yellow-500 -ms-12'>Scholar <span className='text-primary'> <span className='text-3xl md:text-4xl'>S</span>tream</span></h2>
+                    <h2 className='font-bold text-yellow-500 -ms-12'>Scholar <span className='text-secondary'> <span className='text-3xl md:text-4xl'>S</span>tream</span></h2>
                 </div>
                 
             </div>
