@@ -5,8 +5,8 @@ import { NavLink } from 'react-router';
 
 const Navbar = () => {
     const links = <>
-        <li> <NavLink to="" className="text-white">Home</NavLink> </li>
-        <li> <NavLink to="" className="text-white">All Scholarships</NavLink> </li>
+        <li> <NavLink to="/" className="text-white">Home</NavLink> </li>
+        <li> <NavLink to="/allScholarships" className="text-white">All Scholarships</NavLink> </li>
         <li> <NavLink to=""></NavLink> </li>
     </>
     return (

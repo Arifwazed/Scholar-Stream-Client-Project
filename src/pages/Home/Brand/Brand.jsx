@@ -22,7 +22,7 @@ const Brand = () => {
 
             <Marquee className='flex gap-10 font-semibold' pauseOnHover={true} speed={80}>
                 {
-                    brands.map((logo,index) => <img key={index} src={logo} className='mr-50' alt="" />)
+                    brands.map((logo,index) => <img key={index} src={logo} className='mr-20 md:mr-50' alt="" />)
                 }
             </Marquee>
 
