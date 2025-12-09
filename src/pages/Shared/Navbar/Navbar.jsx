@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
 import logoImg3 from '../../../assets/logo3.png'
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
     const links = <>
@@ -35,7 +35,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end gap-2">
                 <a className="btn btn-secondary text-gray-900 border-none shadow-none rounded-2xl">Login</a>
-                <a className="btn bg-yellow-500 text-gray-900 border-none shadow-none rounded-2xl">Register</a>
+                <Link to='/register' className="btn bg-yellow-500 text-gray-900 border-none shadow-none rounded-2xl">Register</Link>
             </div>
         </div>
     );
