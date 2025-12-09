@@ -11,8 +11,6 @@
   --color-secondary: #CAEB66;
 }
 
-
-
 body{
   .pt-serif-regular {
   font-family: "PT Serif", serif;
@@ -37,4 +35,16 @@ body{
     font-weight: 700;
     font-style: italic;
   }
+}
+
+.btn-logout {
+  background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  
+}
+.btn-logout:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
