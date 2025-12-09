@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     // // const {setUser,createUser,signInGoogle} =use(AuthContext);
@@ -189,10 +190,7 @@ const Register = () => {
                                     <hr className='w-1/2'/>
                                 </div>
                                 {/* Google */}
-                                <button onClick="" className="btn bg-gray-800  border-none shadow-none text-white rounded-xl">
-                                <img width="18" height="18" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>
-                                Login with Google
-                                </button>
+                                <SocialLogin></SocialLogin>
                                 <p className="text-center my-3 text-xs font-semibold dark:text-black">
                                     Already have an Account ?{" "}
                                     <Link to="/login" className="text-[#229D9C]">

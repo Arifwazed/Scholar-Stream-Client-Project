@@ -1,11 +1,42 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const {register,handleSubmit, formState: {errors}} = useForm();
+    const {signInUser} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const handleLogin = (data) => {
         console.log("From login:", data)
+        signInUser(data.email,data.password)
+        .then(result => {
+            console.log('After login:',result.user);
+            Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "SuccessFully Login",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(()=>{
+                navigate(location.state || '/')   
+            },2000);
+        })
+        .catch(error => {
+            console.log(error.code)
+            Swal.fire({
+            // position: "top-end",
+                icon: "error",
+                title: error.code,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        })
     }
     return (
         <div>
@@ -49,10 +80,7 @@ const Login = () => {
                                     <hr className='w-1/2'/>
                                 </div>
                                 {/* Google */}
-                                <button onClick="" className="btn bg-gray-800  border-none shadow-none text-white rounded-xl">
-                                <img width="18" height="18" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>
-                                Login with Google
-                                </button>
+                                <SocialLogin></SocialLogin>
                                 <p className="text-center my-3 text-xs font-semibold dark:text-black">
                                     Don’t have any account ?{" "}
                                     <Link to="/register" className="text-[#229D9C]">
