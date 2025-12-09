@@ -2,13 +2,19 @@ import React from 'react';
 import Logo from '../../../components/Logo/Logo';
 import logoImg3 from '../../../assets/logo3.png'
 import { Link, NavLink } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+    const {user,loading,logOut} = useAuth();
     const links = <>
         <li> <NavLink to="/" className="text-white">Home</NavLink> </li>
         <li> <NavLink to="/allScholarships" className="text-white">All Scholarships</NavLink> </li>
         <li> <NavLink to=""></NavLink> </li>
     </>
+
+    const handleLogout = () => {
+        logOut();
+    }
     return (
         <div className="navbar bg-[#4F5CC3] shadow-sm md:px-10">
             <div className="navbar-start">
@@ -34,8 +40,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <a className="btn btn-secondary text-gray-900 border-none shadow-none rounded-2xl">Login</a>
-                <Link to='/register' className="btn bg-yellow-500 text-gray-900 border-none shadow-none rounded-2xl">Register</Link>
+                {
+                    user ? <a onClick={handleLogout} className="btn bg-red-500 text-white border-none shadow-none rounded-2xl">Log Out</a> : <> 
+                    <Link to='/login' className="btn btn-secondary text-gray-900 border-none shadow-none rounded-2xl">Login</Link>
+                    <Link to='/register' className="btn bg-yellow-500 text-gray-900 border-none shadow-none rounded-2xl">Register</Link> 
+                    </>
+                }
+                
             </div>
         </div>
     );

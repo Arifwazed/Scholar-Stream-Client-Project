@@ -1,8 +1,8 @@
 import React, { use, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
-// import { toast } from 'react-toastify';
-// import { AuthContext } from '../../Contexts/AuthContext';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     // // const {setUser,createUser,signInGoogle} =use(AuthContext);
@@ -79,11 +79,48 @@ const Register = () => {
     // }
 
     const {register, handleSubmit,formState: {errors}} = useForm();
+    const {registerUser} = useAuth();
+    const navigate = useNavigate()
 
     const handleRegister = (data) => {
         console.log("from register:",data);
-        const profileImg = data.photo;
-        // console.log("from register:",profileImg);
+        registerUser(data.email,data.password)
+        .then(result => {
+            console.log("Aftter registation:",result.user)
+            
+            Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "SuccessFully Registered",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            navigate('/');
+
+        })
+        .catch(error => {
+            const code = error.code;
+            if(code === 'auth/email-already-in-use'){
+                Swal.fire({
+                // position: "top-end",
+                    icon: "error",
+                    title: "Email already in use",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+            else{
+                Swal.fire({
+                // position: "top-end",
+                    icon: "error",
+                    title: code,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+            console.log("error from register",code)
+        })
     }
     return (
         <div>
