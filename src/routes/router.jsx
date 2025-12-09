@@ -6,6 +6,7 @@ import ScholarshipDetails from "../pages/ScholarshipDetails/ScholarshipDetails";
 import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -40,5 +41,9 @@ export const router = createBrowserRouter([
             Component: Login,
         }
     ]
+  },
+  {
+    path: 'dashboard',
+    element: <DashboardLayout></DashboardLayout>
   }
 ]);

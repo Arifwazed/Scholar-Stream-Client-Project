@@ -15,7 +15,7 @@ const Navbar = () => {
         <li> <NavLink to=""></NavLink></li>
         {
             user && <>
-                <li> <NavLink to="" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Dashboard</NavLink> </li>
+                <li> <NavLink to="/dashboard" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Dashboard</NavLink> </li>
             </> 
             
         }
