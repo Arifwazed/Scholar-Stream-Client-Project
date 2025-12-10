@@ -82,7 +82,7 @@ const DashboardLayout = () => {
                         {/*Only Admin Related */}
                         <li>
                             <NavLink
-                                to="Add Scholarship"
+                                to="/dashboard/add-scholarship"
                                 data-tip="Add Scholarship"
                                 className={({ isActive }) =>
                                 `is-drawer-close:tooltip is-drawer-close:tooltip-right
@@ -96,7 +96,7 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="Manage Scholarships:"
+                                to="/dashboard/manage-scholarships"
                                 data-tip="Manage Scholarships"
                                 className={({ isActive }) =>
                                 `is-drawer-close:tooltip is-drawer-close:tooltip-right
@@ -110,7 +110,7 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="Manage Users"
+                                to="/dashboard/manage-users"
                                 data-tip="Manage Users"
                                 className={({ isActive }) =>
                                 `is-drawer-close:tooltip is-drawer-close:tooltip-right

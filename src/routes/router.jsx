@@ -7,6 +7,9 @@ import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
 import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AddScholarship from "../pages/Dashboard/AddScholarship/AddScholarship";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +47,21 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <DashboardLayout></DashboardLayout>
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+        {
+            index: true,
+            Component: DashboardHome,
+        },
+        // admin related routes
+        {
+            path: 'add-scholarship',
+            element: <AddScholarship></AddScholarship>
+        },
+        {
+            path: 'manage-users',
+            element: <ManageUsers></ManageUsers>,
+        }
+    ]
   }
 ]);
