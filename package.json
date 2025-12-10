@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@lottiefiles/dotlottie-react": "^0.17.10",
+    "@lottiefiles/lottie-player": "^2.0.12",
     "@tailwindcss/vite": "^4.1.17",
     "firebase": "^12.6.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.556.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
