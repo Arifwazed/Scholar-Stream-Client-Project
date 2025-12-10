@@ -1,7 +1,12 @@
 import React from 'react';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaHospitalUser, FaUserCircle } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router';
 import Logo from '../components/Logo/Logo';
+import logoImg from '../assets/logo3.png'
+import { MdAssignmentAdd, MdRuleFolder } from 'react-icons/md';
+import { RiFolderChartFill } from 'react-icons/ri';
+import { LuFolderSync } from 'react-icons/lu';
+import { PiChartLineUpFill } from 'react-icons/pi';
 
 const DashboardLayout = () => {
     return (
@@ -29,26 +34,109 @@ const DashboardLayout = () => {
                     {/* Sidebar content here */}
                     <ul className="menu w-full grow">
                         {/* List item */}
-                        <li>
-                            <Link to='/'> <Logo></Logo> </Link>
-                        </li>
-                        <li>
-                            <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                                {/* Home icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                                <span className="is-drawer-close:hidden">Homepage</span>
+                        <li className='mb-3'>
+                            <Link to='/'>
+                                <div className='flex items-end '>
+                                    <img src={logoImg} height={50} width={80} alt="" />
+                                    <h2 className='font-bold text-xl text-yellow-500 -ms-15'>Scholar <span className='text-secondary'> <span className='text-4xl'>S</span>tream</span></h2>
+                                </div>
                             </Link>
                         </li>
                         <li>
-                            <NavLink to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Profile">
-                                {/* Home icon */}
-                                <FaUserCircle />
-                                <span className="is-drawer-close:hidden">My Profile</span>
+                            <NavLink
+                                to="/dashboard"
+                                data-tip="Homepage"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                strokeLinejoin="round" strokeLinecap="round" strokeWidth="2"
+                                fill="none" stroke="currentColor" className="my-1.5 inline-block size-4">
+                                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                </svg>
+
+                                <span className="is-drawer-close:hidden">Homepage</span>
                             </NavLink>
                         </li>
 
-                        {/*Only Admin Related */}
+                        <li>
+                            <NavLink
+                                to="Profile"
+                                data-tip="My Profile"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <FaUserCircle className="size-5" />
+                                <span className="is-drawer-close:hidden">My Profile</span>
+                            </NavLink>
+                        </li>
+                       
 
+                        {/*Only Admin Related */}
+                        <li>
+                            <NavLink
+                                to="Add Scholarship"
+                                data-tip="Add Scholarship"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <MdAssignmentAdd className="size-5"/>
+                                <span className="is-drawer-close:hidden">Add Scholarship</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="Manage Scholarships:"
+                                data-tip="Manage Scholarships"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <LuFolderSync className="size-5"/>
+                                <span className="is-drawer-close:hidden">Manage Scholarships</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="Manage Users"
+                                data-tip="Manage Users"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <FaHospitalUser className="size-5"/>
+                                <span className="is-drawer-close:hidden">Manage Users</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="Analytics"
+                                data-tip="Analytics"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <PiChartLineUpFill className="size-5"/>
+                                {/* <LuFolderSync className="size-5"/> */}
+                                <span className="is-drawer-close:hidden">Analytics</span>
+                            </NavLink>
+                        </li>
 
                         {/* List item */}
                         <li>
