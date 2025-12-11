@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import { RiEdit2Fill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const ManageScholarships = () => {
     const axiosSecure = useAxiosSecure();
@@ -41,6 +42,11 @@ const ManageScholarships = () => {
                 
             }
         });
+    }
+
+    const handleEditScholarship = id => {
+        console.log('Edit id:',id);
+
     }
     return (
         <div>
@@ -110,7 +116,12 @@ const ManageScholarships = () => {
                         <td>
                             <div className='flex flex-row'>
 
-                            <button onClick={()=>handleEditScholarship(user)} className='btn bg-green-400 mr-3'>Edit <RiEdit2Fill /> </button>
+                            {/* <button onClick={()=>handleEditScholarship(scholarship._id)} className='btn bg-green-400 mr-3'>Edit <RiEdit2Fill /> </button> */}
+
+                            <Link to={`/dashboard/update-scholarships/${scholarship._id}`}>
+                                <button className='btn bg-green-400 mr-3'>Edit <RiEdit2Fill /> </button>
+                            </Link>
+
                             <button onClick={()=>handleRemoveScholarship(scholarship._id)} className='btn bg-red-400'> Remove<FaTrashAlt /> </button >
                             </div>
 
