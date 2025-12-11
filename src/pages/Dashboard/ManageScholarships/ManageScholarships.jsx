@@ -1,9 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageScholarships = () => {
+    const axiosSecure = useAxiosSecure();
+    const {data : allScholarship = []} = useQuery({
+        queryKey: ['allScholarship'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/scholarships');
+            return res.data;
+        }
+    })
     return (
         <div>
-            <h1 className="text-4xl text-center">Manage Scholarships</h1>
+            <h1 className="text-4xl text-center">Manage Scholarships: {allScholarship.length}</h1>
             {/* search */}
             {/* <p className='my-2'>search input: {searchText}</p> */}
             <div className=' text-center'>
