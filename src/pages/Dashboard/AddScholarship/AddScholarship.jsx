@@ -2,20 +2,35 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router';
 
 const AddScholarship = () => {
   const {user} = useAuth()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log('From add scholarship:',data);
-    Swal.fire({
-        // position: "top-end",
-        icon: "success",
-        title: "SuccessFully Login",
-        showConfirmButton: false,
-        timer: 1500
-    });
+    data.tuitionFees = parseInt(data.tuitionFees);
+    data.applicationFees = parseInt(data.applicationFees);
+    data.universityWorldRank = parseInt(data.universityWorldRank);
+    data.serviceCharge = parseInt(data.serviceCharge);
+    
+    axiosSecure.post('/scholarships',data).then((res) => {
+      console.log('after add scholarship:',res.data)
+      if(res.data.insertedId){
+        Swal.fire({
+          // position: "top-end",
+          icon: "success",
+          title: "Scholarship SuccessFully Added",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/dashboard/manage-scholarships')
+      } 
+    })
     reset();
   };
   return (
@@ -58,11 +73,11 @@ const AddScholarship = () => {
                 <label className="">University Image URL</label>
                 <input
                   type="text"
-                  {...register("image", { required: true })}
+                  {...register("universityImage", { required: true })}
                   className="input input-bordered w-full mt-1"
                   placeholder="Direct image URL"
                 />
-                {errors.image && <p className="text-red-500 text-sm">Required</p>}
+                {errors.universityImage && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* Country + City */}
@@ -71,22 +86,22 @@ const AddScholarship = () => {
                   <label className="">Country</label>
                   <input
                     type="text"
-                    {...register("country", { required: true })}
+                    {...register("universityCountry", { required: true })}
                     className="input input-bordered w-full mt-1"
                     placeholder="Country"
                   />
-                  {errors.country && <p className="text-red-500 text-sm">Required</p>}
+                  {errors.universityCountry && <p className="text-red-500 text-sm">Required</p>}
                 </div>
 
                 <div>
                   <label className="">City</label>
                   <input
                     type="text"
-                    {...register("city", { required: true })}
+                    {...register("universityCity", { required: true })}
                     className="input input-bordered w-full mt-1"
                     placeholder="City"
                   />
-                  {errors.city && <p className="text-red-500 text-sm">Required</p>}
+                  {errors.universityCity && <p className="text-red-500 text-sm">Required</p>}
                 </div>
               </div>
 
@@ -95,11 +110,11 @@ const AddScholarship = () => {
                 <label className="">University World Rank</label>
                 <input
                   type="number"
-                  {...register("worldRank", { required: true })}
+                  {...register("universityWorldRank", { required: true })}
                   className="input input-bordered w-full mt-1"
                   placeholder="e.g. 200"
                 />
-                {errors.worldRank && <p className="text-red-500 text-sm">Required</p>}
+                {errors.universityWorldRank && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* Subject Category */}
@@ -115,7 +130,7 @@ const AddScholarship = () => {
               </div>
 
               {/* Scholarship Category */}
-              <div>
+              {/* <div>
                 <label className="">Scholarship Category</label>
                 <input
                   type="text"
@@ -124,10 +139,26 @@ const AddScholarship = () => {
                   placeholder="e.g. Fully-Funded, Partial, Tuition Waiver"
                 />
                 {errors.scholarshipCategory && <p className="text-red-500 text-sm">Required</p>}
+              </div> */}
+
+              <div>
+                <label className="">Scholarship Category</label>
+                <select
+                  {...register("scholarshipCategory", { required: true })}
+                  defaultValue="Select Category"
+                  className="select select-bordered w-full mt-1"
+                >
+                  <option disabled={true}>Select Category</option>
+                  <option value="Full Fund">Full Fund</option>
+                  <option value="Partial Fund">Partial Fund</option>
+                  <option value="Self Fund">Self Fund</option>
+                </select>
+
+                {errors.scholarshipCategory && (<p className="text-red-500 text-sm">Required</p>)}
               </div>
 
               {/* Degree */}
-              <div>
+              {/* <div>
                 <label className="">Degree</label>
                 <input
                   type="text"
@@ -136,6 +167,21 @@ const AddScholarship = () => {
                   placeholder="e.g. Bachelor, Masters, PhD"
                 />
                 {errors.degree && <p className="text-red-500 text-sm">Required</p>}
+              </div> */}
+              <div>
+                <label className="">Degree</label>
+                <select
+                  {...register("degree", { required: true })}
+                  defaultValue="Select Degree"
+                  className="select select-bordered w-full mt-1"
+                >
+                  <option disabled={true}>Select Degree</option>
+                  <option value="Bachelor">Bachelor</option>
+                  <option value="Masters">Masters</option>
+                  <option value="Diploma">Diploma</option>
+                </select>
+
+                {errors.degree && (<p className="text-red-500 text-sm">Required</p>)}
               </div>
 
               {/* Tuition Fees (optional) */}
@@ -178,10 +224,10 @@ const AddScholarship = () => {
                 <label className="">Deadline</label>
                 <input
                   type="date"
-                  {...register("deadline", { required: true })}
+                  {...register("applicationDeadline", { required: true })}
                   className="input input-bordered w-full mt-1"
                 />
-                {errors.deadline && <p className="text-red-500 text-sm">Required</p>}
+                {errors.applicationDeadline && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* Post Date */}
@@ -189,10 +235,10 @@ const AddScholarship = () => {
                 <label className="">Post Date</label>
                 <input
                   type="date"
-                  {...register("postDate", { required: true })}
+                  {...register("scholarshipPostDate", { required: true })}
                   className="input input-bordered w-full mt-1"
                 />
-                {errors.postDate && <p className="text-red-500 text-sm">Required</p>}
+                {errors.scholarshipPostDate && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* User Email */}
@@ -200,12 +246,23 @@ const AddScholarship = () => {
                 <label className="">User Email</label>
                 <input
                   type="email"
-                  {...register("userEmail", { required: true })}
+                  {...register("postedUserEmail", { required: true })}
                   className="input input-bordered w-full mt-1"
                   placeholder="Enter your email"
                   defaultValue={user?.email}
                 />
-                {errors.userEmail && <p className="text-red-500 text-sm">Required</p>}
+                {errors.postedUserEmail && <p className="text-red-500 text-sm">Required</p>}
+              </div>
+
+              {/* scholarshipDescription */}
+              <div>
+                <label className="">Scholarship Description</label>
+                <textarea
+                  {...register("scholarshipDescription", { required: true })}
+                  className="textarea w-full mt-1"
+                  placeholder="Scholarship Description"
+                ></textarea>
+                {errors.scholarshipDescription && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* Submit Button */}
