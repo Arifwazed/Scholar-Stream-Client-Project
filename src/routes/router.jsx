@@ -15,6 +15,7 @@ import ManageScholarships from "../pages/Dashboard/ManageScholarships/ManageScho
 import UpdateScholarship from "../pages/Dashboard/ManageScholarships/UpdateScholarship";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
         },
         {
             path: 'payment-cancelled',
-            // Component: ,
+            Component: PaymentCancel,
         }
     ]
   }
