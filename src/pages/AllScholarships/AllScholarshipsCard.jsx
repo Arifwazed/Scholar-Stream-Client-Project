@@ -61,7 +61,7 @@ const AllScholarshipsCard = ({scholarship}) => {
                 </div>
 
                 {/* View Details Button */}
-                <Link to={`/scholarshipDetails/${scholarship.id}`}>
+                <Link to={`/scholarshipDetails/${scholarship._id}`}>
                     <button className="w-full mt-4 py-2 bg-primary text-white hover:text-primary rounded-full font-medium hover:bg-gray-200 hover:border-2 border-primary transition">
                     View Details
                     </button>

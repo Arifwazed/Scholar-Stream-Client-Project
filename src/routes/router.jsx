@@ -13,6 +13,7 @@ import AddScholarship from "../pages/Dashboard/AddScholarship/AddScholarship";
 import PrivateRoute from "./PrivateRoute";
 import ManageScholarships from "../pages/Dashboard/ManageScholarships/ManageScholarships";
 import UpdateScholarship from "../pages/Dashboard/ManageScholarships/UpdateScholarship";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,11 @@ export const router = createBrowserRouter([
         {
             path: 'manage-users',
             element: <ManageUsers></ManageUsers>,
+        },
+        // user related routes
+        {
+            path: 'payment/:scholarshipId',
+            Component: Payment,
         }
     ]
   }

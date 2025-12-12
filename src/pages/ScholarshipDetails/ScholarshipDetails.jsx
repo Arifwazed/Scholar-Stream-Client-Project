@@ -1,27 +1,39 @@
 import { MapPinIcon, StarIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const ScholarshipDetails = () => {
-  const { id } = useParams();
-  const [scholarship, setScholarship] = useState(null);
+  const { id: scholarshipId } = useParams();
+  const axiosSecure = useAxiosSecure()
+  // const [scholarship, setScholarship] = useState(null);
   const [reviews, setReviews] = useState([]);
 
   // Fade animation class
   const fadeIn = "opacity-0 animate-[fadeIn_0.8s_ease-out_forwards]";
 
-  useEffect(() => {
-    fetch("/data/scholarships.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const selected = data.find((item) => item.id === parseInt(id));
-        setScholarship(selected);
-      });
+  const {data : scholarship = []} = useQuery({
+    queryKey: ['scholarship',scholarshipId],
+    queryFn: async () => {
+        const res = await axiosSecure.get(`/scholarships/${scholarshipId}`);
+        return res.data;
+    }
+  })
+  console.log("From Scholarship Details:",scholarshipId)
 
-    fetch(`/api/reviews?scholarshipId=${id}`)
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, [id]);
+  // useEffect(() => {
+  //   fetch("/data/scholarships.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const selected = data.find((item) => item.id === parseInt(id));
+  //       setScholarship(selected);
+  //     });
+
+  //   fetch(`/api/reviews?scholarshipId=${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setReviews(data));
+  // }, [id]);
 
 
   if (!scholarship)
@@ -122,7 +134,8 @@ const ScholarshipDetails = () => {
 
           {/* ---------------- APPLY BUTTON ---------------- */}
           <div className="mt-8">
-            <Link to={`/checkout/${scholarship._id}`}>
+            {/* <Link to={`/dashboard/payment/${scholarship._id}`}> */}
+            <Link to={`/dashboard/payment/${scholarship._id}`}>
               <button className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-blue-700 transition text-lg shadow-lg hover:shadow-xl">
                 Apply for Scholarship
               </button>
