@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManageScholarships from "../pages/Dashboard/ManageScholarships/ManageScholarships";
 import UpdateScholarship from "../pages/Dashboard/ManageScholarships/UpdateScholarship";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,14 @@ export const router = createBrowserRouter([
         {
             path: 'payment/:scholarshipId',
             Component: Payment,
+        },
+        {
+            path: 'payment-success',
+            Component: PaymentSuccess,
+        },
+        {
+            path: 'payment-cancelled',
+            // Component: ,
         }
     ]
   }
