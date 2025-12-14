@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const Register = () => {
     // // const {setUser,createUser,signInGoogle} =use(AuthContext);
@@ -81,23 +82,47 @@ const Register = () => {
 
     const {register, handleSubmit,formState: {errors}} = useForm();
     const {registerUser} = useAuth();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation()
+    const axiosSecure = useAxiosSecure()
 
     const handleRegister = (data) => {
         console.log("from register:",data);
         registerUser(data.email,data.password)
         .then(result => {
-            console.log("Aftter registation:",result.user)
+            console.log("After registation at firebase:",result.user)
             
-            Swal.fire({
+            const userInfo = {
+                name: data.name,
+                email: data.email,
+                photoURL: data.photo
+            }
+            console.log("Before registation at Database:",userInfo)
+            axiosSecure.post('/users',userInfo)
+            .then(res => {
+                if(res.data.insertedId){
+                    console.log('new user added to database')
+                    Swal.fire({
+                        // position: "top-end",
+                        icon: "success",
+                        title: "SuccessFully Registered",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+        
+                    navigate(location.state || '/');
+                }
+            })
+            .catch(error => {
+                const code = error.code;
+                Swal.fire({
                 // position: "top-end",
-                icon: "success",
-                title: "SuccessFully Registered",
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            navigate('/');
+                    icon: "error",
+                    title: code,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            })
 
         })
         .catch(error => {
