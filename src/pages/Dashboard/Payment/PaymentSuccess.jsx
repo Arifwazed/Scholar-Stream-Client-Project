@@ -1,17 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import bgSuccess from '../../../assets/bg-success.jpg'
 import icon from '../../../assets/check.png'
 import { Link, useSearchParams } from 'react-router';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const PaymentSuccess = () => {
     const [searchParams] = useSearchParams();
     const sessionId = searchParams.get('session_id');
-    console.log(sessionId);
+    const [paymentInfo,setPaymentInfo] = useState({});
+    const axiosSecure = useAxiosSecure()
+    console.log('sessionId: ',sessionId);
 
     useEffect(()=>{
+        if(sessionId){
+            axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
+            .then(res => {
+                setPaymentInfo({
+                    scholarshipName: res.data.scholarshipName,
+                    universityName: res.data.universityName,
+                    paid: res.data.cost,
+                    transactionId: res.data.transaction_Id,
+                    date: res.data.date
+                });
+                console.log(paymentInfo);
+            })
+        }
+    },[sessionId,axiosSecure,paymentInfo])
 
-    },[sessionId])
-    
     return (
         <div>
             
@@ -23,23 +38,23 @@ const PaymentSuccess = () => {
                 <h2 className="text-2xl text-center font-semibold">Payment Details</h2>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>Scholarship Name:</p>
-                    <p className='font-semibold'>Du</p>
+                    <p className='font-semibold'>{paymentInfo.scholarshipName}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>University Name:</p>
-                    <p className='font-semibold'>Du</p>
+                    <p className='font-semibold'>{paymentInfo.universityName}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>Amount Paid:</p>
-                    <p className='font-semibold'>100</p>
+                    <p className='font-semibold text-blue-600'>{paymentInfo.paid}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>Transaction ID:</p>
-                    <p className='font-semibold'>100</p>
+                    <p className='font-semibold'>{paymentInfo.transactionId}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>Transaction Date:</p>
-                    <p className='font-semibold'>100</p>
+                    <p className='font-semibold'>{paymentInfo.date}</p>
                 </div>
             </div>
 

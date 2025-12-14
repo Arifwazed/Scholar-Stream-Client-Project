@@ -3,19 +3,23 @@ import React from 'react';
 import { useParams } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import Loading from '../../../components/Loading/Loading';
 
 const Payment = () => {
     const {scholarshipId} = useParams();
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
 
-    const {data : payScholarship = []} = useQuery({
+    const {data : payScholarship = [],isLoading} = useQuery({
         queryKey: ['payScholarship',scholarshipId],
         queryFn: async () => {
             const res = await axiosSecure.get(`/scholarships/${scholarshipId}`)
             return res.data;
         }
     })
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     console.log('from payment, id:',scholarshipId)
     console.log('from payment, user:',user.email)

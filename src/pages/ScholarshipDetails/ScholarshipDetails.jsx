@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/Loading/Loading";
 
 const ScholarshipDetails = () => {
   const { id: scholarshipId } = useParams();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const {user} = useAuth();
   // const [scholarship, setScholarship] = useState(null);
   const [reviews, setReviews] = useState([]);
 
@@ -21,6 +25,7 @@ const ScholarshipDetails = () => {
     }
   })
   console.log("From Scholarship Details:",scholarshipId)
+  console.log('user:',user)
 
   // useEffect(() => {
   //   fetch("/data/scholarships.json")
@@ -35,9 +40,59 @@ const ScholarshipDetails = () => {
   //     .then((data) => setReviews(data));
   // }, [id]);
 
+  const handlePayment = async (trackingId,applicationId) => {
+    const paymentInfo = {
+        scholarshipName : scholarship.scholarshipName,
+        universityName : scholarship.universityName,
+        cost : scholarship.applicationFees,
+        userEmail: user.email,
+        scholarshipId: scholarship._id,
+        applicationId:applicationId,
+        trackingId: trackingId
+    }
+    // const res = await axiosSecure.post('/create-checkout-session',paymentInfo);
+    console.log('Payment Info:',paymentInfo)
+    const res = await axiosSecure.post('/create-checkout-session',paymentInfo)
+    // console.log('After Payment Info:',res.data.url)
+    window.location.href = res.data.url;
+  }
 
-  if (!scholarship)
-    return <div className="text-center mt-20">Loading...</div>;
+  const handleApplyScholarship = async() => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to pay the application fee $${scholarship.applicationFees}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, pay it!"
+      }).then((result) => {
+      if (result.isConfirmed) {
+        const applicationInfo = {
+          scholarshipId: scholarshipId,
+          userId: user.uid,
+          userName: user.displayName,
+          userEmail: user.email,
+          universityName: scholarship.universityName,
+          scholarshipCategory: scholarship.scholarshipCategory,
+          degree: scholarship.degree,
+          applicationFees: scholarship.applicationFees,
+          serviceCharge: scholarship.serviceCharge
+        }
+        axiosSecure.post('/applications',applicationInfo).then(res => {
+          if(res.data.insertedId){
+            const trackingId = res.data.trackingId;
+            const applicationId= res.data.insertedId;
+            handlePayment(trackingId,applicationId)
+          }
+        })
+      }
+    });
+  }
+
+  if (!scholarship){
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="bg-[#e7f4ff] py-10">
@@ -111,7 +166,7 @@ const ScholarshipDetails = () => {
           </div>
 
           {/* ---------------- DESCRIPTION ---------------- */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow">
+          <div className="mt-8 p-6 bg-linear-to-r from-blue-50 to-purple-50 rounded-2xl shadow">
             <h3 className="text-2xl font-semibold mb-2">
               Scholarship Description
             </h3>
@@ -135,11 +190,10 @@ const ScholarshipDetails = () => {
           {/* ---------------- APPLY BUTTON ---------------- */}
           <div className="mt-8">
             {/* <Link to={`/dashboard/payment/${scholarship._id}`}> */}
-            <Link to={`/dashboard/payment/${scholarship._id}`}>
-              <button className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-blue-700 transition text-lg shadow-lg hover:shadow-xl">
+              <button onClick={handleApplyScholarship} className="px-8 py-3 bg-primary text-white hover:text-primary border-2 border-primary rounded-full font-semibold hover:bg-white transition text-lg shadow-lg hover:shadow-xl">
                 Apply for Scholarship
               </button>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
 
