@@ -81,7 +81,7 @@ const Register = () => {
     // }
 
     const {register, handleSubmit,formState: {errors}} = useForm();
-    const {registerUser} = useAuth();
+    const {registerUser,updateUserProfile} = useAuth();
     const navigate = useNavigate();
     const location = useLocation()
     const axiosSecure = useAxiosSecure()
@@ -102,15 +102,25 @@ const Register = () => {
             .then(res => {
                 if(res.data.insertedId){
                     console.log('new user added to database')
-                    Swal.fire({
-                        // position: "top-end",
-                        icon: "success",
-                        title: "SuccessFully Registered",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-        
-                    navigate(location.state || '/');
+                    // update user profile
+                    const userProfile = {
+                        displayName: data.name,
+                        photoURL: data.photo
+                    }
+                    console.log("userProfile",userProfile)
+                    updateUserProfile(userProfile)
+                    .then(()=>{
+                        console.log('user updated done')
+                        Swal.fire({
+                            // position: "top-end",
+                            icon: "success",
+                            title: "SuccessFully Registered",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+            
+                        navigate(location.state || '/');
+                    })
                 }
             })
             .catch(error => {

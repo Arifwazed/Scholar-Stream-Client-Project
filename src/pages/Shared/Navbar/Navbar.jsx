@@ -53,8 +53,8 @@ const Navbar = () => {
                     user ? 
                     <>
                         <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className=" m-1">
-                                <img width="45" height="45" className="rounded-full" src={user?.photoURL || fallbackImg} alt=""/>
+                            <div tabIndex={0} role="button" className="h-11 w-11 m-1">
+                                <img className="w-full h-full object-cover rounded-full" src={user?.photoURL || fallbackImg} alt=""/>
                             </div>
                             <ul tabIndex="-1" className="dropdown-content menu bg-[#4F5CC3] text-white rounded-box z-1 w-48 md:w-54 p-2 shadow-sm border">
                                 <li className="text-base font-semibold"><a><img width="28" height="28" src="https://img.icons8.com/pulsar-gradient/48/user.png" alt="user"/>{user.displayName}</a></li>

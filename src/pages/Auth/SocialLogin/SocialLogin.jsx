@@ -2,26 +2,38 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const SocialLogin = () => {
     const {signInGoogle} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure()
 
     const handleGoogleLogin = () => {
         signInGoogle()
         .then(result => {
             console.log("Successful Google login: ",result.user)
-            Swal.fire({
-            // position: "top-end",
-            icon: "success",
-            title: "SuccessFully Login",
-            showConfirmButton: false,
-            timer: 1500
-            });
-            setTimeout(()=>{
-                navigate(location.state || '/')   
-            },2000);
+            const userInfo = {
+                name: result.user.displayName,
+                email: result.user.email,
+                photoURL: result.user.photoURL
+            }
+            console.log("Before registation at Database:",userInfo)
+            axiosSecure.post('/users',userInfo)
+            .then(() => {
+                Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "SuccessFully Login",
+                showConfirmButton: false,
+                timer: 1500
+                });
+                setTimeout(()=>{
+                    navigate(location.state || '/')   
+                },2000);
+
+            })
         })
         .catch(error => {
             console.log(error.code)
