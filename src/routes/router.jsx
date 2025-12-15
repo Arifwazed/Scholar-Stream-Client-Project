@@ -90,7 +90,9 @@ export const router = createBrowserRouter([
         {
             path: 'payment-cancelled',
             Component: PaymentCancel,
-        }
+        },
+        // Moderator related routes
+        
     ]
   }
 ]);
