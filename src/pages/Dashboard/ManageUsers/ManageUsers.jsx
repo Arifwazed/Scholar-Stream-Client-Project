@@ -1,10 +1,94 @@
 import React from 'react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { FaTrashAlt, FaUserCheck, FaUserShield, FaUserTimes } from 'react-icons/fa';
+import { FiShieldOff } from "react-icons/fi";
+import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
+    const axiosSecure = useAxiosSecure();
+    const {data : users = [],refetch} = useQuery({
+        queryKey: ['allUsers'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/users');
+            return res.data;
+        }
+    })
+
+    const handleMakePromote = (user) => {
+        console.log('from handle promote:',user);
+        const newRole = {role : 'user'} ;
+        if(user.role === 'user'){
+            newRole.role = 'moderator';
+        }
+        else{
+            newRole.role = 'admin';
+        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: `Yes, make ${newRole.role}!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}`,newRole)
+                .then(res => {
+                    // console.log(res.data)
+                    if(res.data.modifiedCount){
+                        refetch()
+                        Swal.fire({
+                            title: "Promoted!",
+                            text: `${user.name} promoted to ${newRole.role}`,
+                            icon: "success"
+                        });
+                    }
+                })           
+            }
+        });
+    }
+
+    const handleMakeDemote = (user) => {
+        console.log('from handle demote:',user);
+        const newRole = {role : 'moderator'} ;
+        if(user.role === 'moderator'){
+            newRole.role = 'user';
+        }
+        else{
+            newRole.role = 'moderator';
+        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: `Yes, make ${newRole.role}!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}`,newRole)
+                .then(res => {
+                    // console.log(res.data)
+                    if(res.data.modifiedCount){
+                        refetch()
+                        Swal.fire({
+                            title: "Demoted!",
+                            text: `${user.name} demoted to ${newRole.role}`,
+                            icon: "success"
+                        });
+                    }
+                })           
+            }
+        });
+    }
+
     return (
         <div>
-            <h1 className="text-4xl">Manage Users</h1>
-            {/* search */}
+            <h1 className="text-4xl text-center">Manage Users: {users.length}</h1>
+            {/*---- search ----*/}
             {/* <p className='my-2'>search input: {searchText}</p> */}
             <label className="input my-3">
                 <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -22,7 +106,8 @@ const ManageUsers = () => {
                 <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
                 
             </label>
-            {/* table */}
+
+            {/*---- table ----*/}
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -37,7 +122,7 @@ const ManageUsers = () => {
                         <th></th>
                     </tr>
                     </thead>
-                    {/* <tbody>
+                    <tbody>
                     {
                         users.map((user,index)=> 
                         <tr>
@@ -52,24 +137,27 @@ const ManageUsers = () => {
                             </div>
                             </div>
                             <div>
-                            <div className="font-bold">{user.displayName}</div>
+                            <div className="font-bold">{user.name}</div>
                             </div>
                         </div>
                         </td>
                         <td>{user.email}</td>
                         <td>{user.role}</td>
-                        <td>
-                            {
-                                user.role === 'admin' ? <button onClick={()=>handleRemoveAdmin(user)} className='btn bg-red-400'><FiShieldOff /></button > : <button onClick={()=>handleMakeAdmin(user)} className='btn bg-green-400'><FaUserShield /></button>
-                            }
+                        <td className='flex'>
+                            <>
+                                <button onClick={()=>handleMakePromote(user)} 
+                                className={`btn bg-green-400 mr-2 ${user.role === 'admin' && "btn-disabled"}`}><FaUserCheck /></button>
+                                <button onClick={()=>handleMakeDemote(user)} 
+                                className={`btn bg-blue-400 ${user.role === 'user' && "btn-disabled"}`}><FaUserTimes /></button > 
+                            </>
                         </td>
-                        <th>
-                        <button className="btn btn-ghost btn-xs">details</button>
+                        <th className=''>
+                            <button onClick={()=>handleRemoveUser(user)} className='btn bg-red-400'><FaTrashAlt /></button > 
                         </th>
                         </tr>)
                     }
                     
-                    </tbody> */}
+                    </tbody>
                 </table>
             </div>
         </div>
