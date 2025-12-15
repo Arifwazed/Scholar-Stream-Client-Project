@@ -85,6 +85,34 @@ const ManageUsers = () => {
         });
     }
 
+    const handleRemoveUser = (user) => {
+        console.log('from handle remove',user)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${user._id}`)
+                .then(res => {
+                    // console.log(res.data)
+                    if(res.data.deletedCount){
+                        refetch()
+                        Swal.fire({
+                            title: `${user.name} has been deleted!`,
+                            icon: "success"
+                        });
+                    }
+                })
+                
+            }
+        });
+    }
+
     return (
         <div>
             <h1 className="text-4xl text-center">Manage Users: {users.length}</h1>
