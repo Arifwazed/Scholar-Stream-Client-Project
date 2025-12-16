@@ -37,6 +37,80 @@ const ManageApplications = () => {
         reset(); 
         document.getElementById("feedbackModal").close();
     }
+
+    const handleStatusUpdate = (info) => {
+        // const id = info._id;
+        // const status = info.applicationStatus;
+        const newStatus = {applicationStatus : 'pending'} ;
+
+        // console.log('from status:',id);
+        if(info.applicationStatus === 'pending'){
+            newStatus.applicationStatus = 'processing';
+        }
+        else{
+            newStatus.applicationStatus = 'completed';
+        }
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: `Yes, change to ${newStatus.applicationStatus}!`
+        }).then((result) => {
+            if(result.isConfirmed) {
+                axiosSecure.patch(`/applications/${info._id}`,newStatus)
+                .then(res => {
+                    // console.log(res.data)
+                    if(res.data.modifiedCount){
+                        refetch()
+                        Swal.fire({
+                            title: "Status Updated!",
+                            text: `${info.userName}'s status has been changed to ${newStatus.applicationStatus}`,
+                            icon: "success"
+                        });
+                    }
+                })           
+            }
+        })
+        .catch(err => {
+        Swal.fire({
+            title: "Update Failed",
+            text: "There was an error updating the status. Please try again.",
+            icon: "error"
+            });
+        });
+    }
+
+    const handleRemoveApplication = (info) => {
+        const newStatus = {applicationStatus : 'rejected'} ;
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: `Yes, change to ${newStatus.applicationStatus}!`
+        }).then((result) => {
+            if(result.isConfirmed) {
+                axiosSecure.patch(`/applications/${info._id}`,newStatus)
+                .then(res => {
+                    // console.log(res.data)
+                    if(res.data.modifiedCount){
+                        refetch()
+                        Swal.fire({
+                            title: "Status Updated!",
+                            text: `${info.userName}'s status has been changed to ${newStatus.applicationStatus}`,
+                            icon: "success"
+                        });
+                    }
+                })           
+            }
+        })
+    } 
     
     console.log('selectedApplication',selectedApplication)
     return (
@@ -61,7 +135,7 @@ const ManageApplications = () => {
                     <tbody>
                     {
                         applications.map((application,index)=> 
-                        <tr>
+                        <tr key={index+1}>
                             <th>{index+1}</th>
                             <td>{application.userName}</td>
                             <td>{application.userEmail}</td>
@@ -98,20 +172,32 @@ const ManageApplications = () => {
                                 </button>
 
                                 {/* Status Update */}
-                                <button
-                                    className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600 flex items-center gap-1 tooltip"
+                                {
+                                    application.paymentStatus === 'paid' && <button
+                                    onClick={() => handleStatusUpdate(application)}
+                                    className={`btn btn-sm bg-blue-500 text-white hover:bg-blue-600 flex items-center gap-1 tooltip
+                                    ${(application.applicationStatus === 'completed' ||
+                                    application.applicationStatus === 'rejected') &&
+                                    "btn-disabled bg-blue-800 cursor-not-allowed"
+                                    }`}
+
                                     data-tip="Update Status"
                                 >
                                     <RefreshCcw className="w-4 h-4" />
                                     <span className="hidden lg:inline">Status</span>
                                 </button>
+                                }
+                                
 
                                 {/* Cancel */}
+                                
                                 <button
-                                    className="btn btn-sm bg-red-500 text-white hover:bg-red-600 tooltip"
+                                    onClick={()=> handleRemoveApplication(application)}
+                                    className={`btn btn-sm bg-red-500 text-white hover:bg-red-600 tooltip ${application.applicationStatus === 'rejected'  && "btn-disabled "}`}
                                     data-tip="Cancel Application"
                                 >
                                     <XCircle className="w-4 h-4" />
+                                    <span className="hidden lg:inline">Cancel</span>
                                 </button>
                             </td>
 
