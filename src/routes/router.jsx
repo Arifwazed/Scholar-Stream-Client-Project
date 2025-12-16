@@ -16,6 +16,7 @@ import UpdateScholarship from "../pages/Dashboard/ManageScholarships/UpdateSchol
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
+import ManageApplications from "../pages/Dashboard/ManageApplications/ManageApplications";
 
 export const router = createBrowserRouter([
   {
@@ -92,7 +93,10 @@ export const router = createBrowserRouter([
             Component: PaymentCancel,
         },
         // Moderator related routes
-        
+        {
+            path: 'manage-applications',
+            Component: ManageApplications,
+        }
     ]
   }
 ]);

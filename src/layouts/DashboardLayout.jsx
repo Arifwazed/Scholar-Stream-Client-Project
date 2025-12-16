@@ -3,7 +3,7 @@ import { FaHospitalUser, FaUserCircle } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router';
 import Logo from '../components/Logo/Logo';
 import logoImg from '../assets/logo3.png'
-import { MdAssignmentAdd, MdRuleFolder } from 'react-icons/md';
+import { MdAssignmentAdd, MdContactMail, MdMarkEmailRead, MdRuleFolder } from 'react-icons/md';
 import { RiFolderChartFill } from 'react-icons/ri';
 import { LuFolderSync } from 'react-icons/lu';
 import { PiChartLineUpFill } from 'react-icons/pi';
@@ -120,6 +120,22 @@ const DashboardLayout = () => {
                             >
                                 <FaHospitalUser className="size-5"/>
                                 <span className="is-drawer-close:hidden">Manage Users</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/dashboard/manage-applications"
+                                data-tip="Manage Applications"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <MdMarkEmailRead  className="size-5"/>
+                                {/* <MdContactMail className="size-5"/> */}
+                                {/* <FaHospitalUser className="size-5"/> */}
+                                <span className="is-drawer-close:hidden">Manage Applications</span>
                             </NavLink>
                         </li>
                         <li>
