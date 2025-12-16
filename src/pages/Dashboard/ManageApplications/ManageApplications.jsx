@@ -1,14 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUserCheck, FaUserTimes } from 'react-icons/fa';
 import { Eye, MessageSquare, RefreshCcw, XCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const ManageApplications = () => {
     const axiosSecure = useAxiosSecure();
     const {register,handleSubmit,reset} = useForm();
-    const {data : applications = []} = useQuery({
+    const [selectedApplicationId,setSelectedApplicationId] = useState(null);
+    const [selectedApplication,setSelectedApplication] = useState(null);
+    const {data : applications = [],refetch} = useQuery({
         queryKey: ['applications'],
         queryFn: async () => {
             const res = await axiosSecure.get('/applications')
@@ -17,12 +20,25 @@ const ManageApplications = () => {
     })
 
     const handleFeedback = (data) => {
-        console.log("from feedback:",data.feedback)
-
-        
-        reset();
+        console.log("from feedback:",data)
+        console.log("from feedback id:",selectedApplicationId);
+        axiosSecure.patch(`/applications/${selectedApplicationId}`,data)
+        .then(res => {
+            console.log(res.data)
+            if(res.data.modifiedCount){
+                refetch()
+                Swal.fire({
+                    title: "Successful!",
+                    text: ``,
+                    icon: "success"
+                });
+            }
+        })
+        reset(); 
         document.getElementById("feedbackModal").close();
     }
+    
+    console.log('selectedApplication',selectedApplication)
     return (
         <div>
             <h1 className="text-4xl text-center mb-5">Manage Application: {applications.length}</h1>
@@ -59,6 +75,10 @@ const ManageApplications = () => {
                                 <button
                                     className="btn btn-sm bg-gray-300 text-gray-700 hover:bg-gray-400 flex items-center gap-1 tooltip"
                                     data-tip="View Details"
+                                    onClick={()=> {
+                                        setSelectedApplication(application);
+                                        document.getElementById('detailsModal').showModal()}
+                                    }
                                 >
                                     <Eye className="w-4 h-4" />
                                     <span className="hidden lg:inline">Details</span>
@@ -68,7 +88,10 @@ const ManageApplications = () => {
                                 <button
                                     className="btn btn-sm bg-green-500 text-white hover:bg-green-600 flex items-center gap-1 tooltip"
                                     data-tip="Give Feedback"
-                                    onClick={()=>document.getElementById('feedbackModal').showModal()}
+                                    onClick={()=> {
+                                        setSelectedApplicationId(application._id);
+                                        document.getElementById('feedbackModal').showModal()}
+                                    }
                                 >
                                     <MessageSquare className="w-4 h-4" />
                                     <span className="hidden lg:inline">Feedback</span>
@@ -138,6 +161,97 @@ const ManageApplications = () => {
                             </div>
                         </form>
 
+                    </div>
+                </dialog>
+
+                {/* for details modal */}
+                <dialog id="detailsModal" className="modal modal-middle">
+                    <div className="modal-box max-w-4xl p-0 rounded-2xl">
+
+                        {/* Header */}
+                        <div className="flex justify-between items-center px-6 py-4 border-b bg-linear-to-r from-blue-500 to-indigo-500 text-white rounded-t-2xl">
+                        <h3 className="text-xl font-bold">Application Details</h3>
+                        <button
+                            onClick={() => document.getElementById("detailsModal").close()}
+                            className="btn btn-sm btn-circle btn-ghost text-white"
+                        >
+                            ✕
+                        </button>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        {/* Applicant Info */}
+                        <div className="bg-base-100 rounded-xl shadow p-5 space-y-3">
+                            <h4 className="text-lg font-semibold border-b pb-2">👤 Applicant Information</h4>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Name:</span>
+                            <span className="font-medium">{selectedApplication?.userName}</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Email:</span>
+                            <span className="font-medium">{selectedApplication?.userEmail}</span>
+                            </div>
+
+                            
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Application Status:</span>
+                            <span className={`badge ${selectedApplication?.applicationStatus === "pending" ? "badge-warning" : "badge-info"} badge-sm`}>
+                                {selectedApplication?.applicationStatus}
+                            </span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Payment Status:</span>
+                            <span className={`badge ${selectedApplication?.paymentStatus === "paid" ? "badge-success" : "badge-error"} badge-sm`}>
+                                {selectedApplication?.paymentStatus}
+                            </span>
+                            </div>
+                        </div>
+
+                        {/* Scholarship Info */}
+                        <div className="bg-base-100 rounded-xl shadow p-5 space-y-3">
+                            <h4 className="text-lg font-semibold border-b pb-2">🎓 Scholarship Information</h4>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">University:</span>
+                            <span className="font-medium">{selectedApplication?.universityName}</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Category:</span>
+                            <span className="font-medium">{selectedApplication?.scholarshipCategory}</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Degree:</span>
+                            <span className="font-medium">{selectedApplication?.degree}</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Application Fee:</span>
+                            <span className="font-medium">${selectedApplication?.applicationFees}</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                            <span className="text-gray-500">Service Charge:</span>
+                            <span className="font-medium">${selectedApplication?.serviceCharge}</span>
+                            </div>
+                        </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="modal-action px-6 py-4 border-t bg-gray-50 rounded-b-2xl">
+                        <button
+                            onClick={() => document.getElementById("detailsModal").close()}
+                            className="btn btn-outline btn-primary w-full md:w-auto"
+                        >
+                            Close
+                        </button>
+                        </div>
                     </div>
                 </dialog>
 
