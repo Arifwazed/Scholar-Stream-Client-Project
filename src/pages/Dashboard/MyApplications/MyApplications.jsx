@@ -399,7 +399,8 @@ const MyApplications = () => {
                         </div>
                     </div>
                 </dialog>
-
+                
+                {/* for review modal */}
                 <dialog id="reviewModal" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
                         <h3 className="font-semibold text-lg mb-2">Add Review</h3>

@@ -3,11 +3,12 @@ import { FaHospitalUser, FaUserCircle } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router';
 import Logo from '../components/Logo/Logo';
 import logoImg from '../assets/logo3.png'
-import { MdAssignmentAdd, MdContactMail, MdMarkEmailRead, MdRuleFolder } from 'react-icons/md';
+import { MdAssignmentAdd, MdContactMail, MdMarkEmailRead, MdOutlineRateReview, MdRuleFolder } from 'react-icons/md';
 import { RiFolderChartFill } from 'react-icons/ri';
 import { LuFolderSync } from 'react-icons/lu';
 import { PiChartLineUpFill } from 'react-icons/pi';
 import { ClipboardList, FileText, Send } from 'lucide-react';
+import { GoCodeReview } from "react-icons/go";
 
 const DashboardLayout = () => {
     return (
@@ -141,6 +142,22 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <NavLink
+                                to="/dashboard/all-reviews"
+                                data-tip="All Reviews"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <MdOutlineRateReview   className="size-5"/>
+                                {/* <MdContactMail className="size-5"/> */}
+                                {/* <FaHospitalUser className="size-5"/> */}
+                                <span className="is-drawer-close:hidden">All Reviews</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
                                 to="/dashboard/my-applications"
                                 data-tip="My Applications"
                                 className={({ isActive }) =>
@@ -153,6 +170,22 @@ const DashboardLayout = () => {
                                 
                                 <FileText className="size-5"/>
                                 <span className="is-drawer-close:hidden">My Applications</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/dashboard/my-reviews"
+                                data-tip="My Reviews"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                <GoCodeReview  className="size-5"/>
+                                {/* <MdContactMail className="size-5"/> */}
+                                {/* <FaHospitalUser className="size-5"/> */}
+                                <span className="is-drawer-close:hidden">My Reviews</span>
                             </NavLink>
                         </li>
                         <li>

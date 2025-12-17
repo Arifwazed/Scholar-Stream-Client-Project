@@ -18,6 +18,8 @@ import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 import ManageApplications from "../pages/Dashboard/ManageApplications/ManageApplications";
 import MyApplications from "../pages/Dashboard/MyApplications/MyApplications";
+import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
+import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
 
 export const router = createBrowserRouter([
   {
@@ -97,10 +99,18 @@ export const router = createBrowserRouter([
             path: 'my-applications',
             Component: MyApplications,
         },
+        {
+            path: 'my-reviews',
+            Component: MyReviews,
+        },
         // Moderator related routes
         {
             path: 'manage-applications',
             Component: ManageApplications,
+        },
+        {
+            path: 'all-reviews',
+            Component: AllReviews,
         }
     ]
   }
