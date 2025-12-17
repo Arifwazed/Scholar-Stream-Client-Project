@@ -41,7 +41,7 @@ const PaymentCancel = () => {
             {/* <Link to='' className='px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-blue-700 text-lg shadow-lg hover:shadow-xl'>Go to My Applications</Link> */}
 
             <div className="mt-6 text-center">
-                <Link to=''>
+                <Link to='/dashboard'>
                     <button className="px-8 py-3 bg-primary text-white hover:text-primary border-2 border-primary rounded-full font-semibold hover:bg-white transition text-lg shadow-lg hover:shadow-xl">
                         <div className='flex items-center gap-2'>
                             <IoMdArrowRoundBack size={20}/>Return to Dashboard

@@ -17,6 +17,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 import ManageApplications from "../pages/Dashboard/ManageApplications/ManageApplications";
+import MyApplications from "../pages/Dashboard/MyApplications/MyApplications";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
         {
             path: 'payment-cancelled',
             Component: PaymentCancel,
+        },
+        {
+            path: 'my-applications',
+            Component: MyApplications,
         },
         // Moderator related routes
         {

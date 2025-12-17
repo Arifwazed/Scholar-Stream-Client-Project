@@ -47,7 +47,7 @@ const ScholarshipDetails = () => {
         cost : scholarship.applicationFees,
         userEmail: user.email,
         scholarshipId: scholarship._id,
-        applicationId:applicationId,
+        applicationId: applicationId,
         trackingId: trackingId
     }
     // const res = await axiosSecure.post('/create-checkout-session',paymentInfo);
@@ -70,6 +70,10 @@ const ScholarshipDetails = () => {
       if (result.isConfirmed) {
         const applicationInfo = {
           scholarshipId: scholarshipId,
+          scholarshipName: scholarship.scholarshipName,
+          subjectCategory: scholarship.subjectCategory,
+          universityCity: scholarship.universityCity,
+          universityCountry: scholarship.universityCountry,
           userId: user.uid,
           userName: user.displayName,
           userEmail: user.email,

@@ -7,6 +7,7 @@ import { MdAssignmentAdd, MdContactMail, MdMarkEmailRead, MdRuleFolder } from 'r
 import { RiFolderChartFill } from 'react-icons/ri';
 import { LuFolderSync } from 'react-icons/lu';
 import { PiChartLineUpFill } from 'react-icons/pi';
+import { ClipboardList, FileText, Send } from 'lucide-react';
 
 const DashboardLayout = () => {
     return (
@@ -136,6 +137,22 @@ const DashboardLayout = () => {
                                 {/* <MdContactMail className="size-5"/> */}
                                 {/* <FaHospitalUser className="size-5"/> */}
                                 <span className="is-drawer-close:hidden">Manage Applications</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/dashboard/my-applications"
+                                data-tip="My Applications"
+                                className={({ isActive }) =>
+                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                flex items-center gap-3 p-2 rounded-xl transition
+                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                }
+                            >
+                                
+                                
+                                <FileText className="size-5"/>
+                                <span className="is-drawer-close:hidden">My Applications</span>
                             </NavLink>
                         </li>
                         <li>
