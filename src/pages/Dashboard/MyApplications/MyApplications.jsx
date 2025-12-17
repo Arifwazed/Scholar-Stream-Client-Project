@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
-import { Eye, RefreshCcw, XCircle } from 'lucide-react';
+import { Eye, MessageSquarePlus, RefreshCcw, XCircle } from 'lucide-react';
 import { FaEdit } from 'react-icons/fa';
 import { MdPaid } from 'react-icons/md';
 import { useForm } from 'react-hook-form';
@@ -13,7 +13,8 @@ const MyApplications = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
     const [selectedApplication,setSelectedApplication] = useState(null);
-    const {register,handleSubmit,reset} = useForm();
+    const {register: registerEdit,handleSubmit: handleEditSubmit,reset: resetEdit} = useForm();
+    const {register: registerReview,handleSubmit: handleReviewSubmit,reset: resetReview} = useForm();
     const {data : myApplications = [],refetch} = useQuery({
         queryKey: ['myApplications'],
         queryFn: async () => {
@@ -21,11 +22,11 @@ const MyApplications = () => {
             return res.data;
         }
     })
-
-    const handleEdit = (data) => {
+    // console.log("user info:",user)
+    const handleEdit =async (data) => {
         console.log("from edit:",data)
         console.log("from edit id:",selectedApplication);
-        axiosSecure.patch(`/applications/${selectedApplication._id}`,data)
+        await axiosSecure.patch(`/applications/${selectedApplication._id}`,data)
         .then(res => {
             console.log(res.data)
             if(res.data.modifiedCount){
@@ -37,7 +38,7 @@ const MyApplications = () => {
                 });
             }
         })
-        reset(); 
+        resetEdit(); 
         document.getElementById("editModal").close();
     }
 
@@ -122,6 +123,36 @@ const MyApplications = () => {
         });
     }
 
+    console.log("from review application:",selectedApplication);
+
+    const handleReview = async(data) => {
+        console.log("from review:",data)
+        // console.log("from edit id:",selectedApplication);
+        data.scholarshipId = selectedApplication.scholarshipId;
+        data.scholarshipName = selectedApplication.scholarshipName;
+        data.universityName = selectedApplication.universityName;
+        data.userName = user.displayName;
+        data.userEmail = user.email;
+        data.userImage = user.photoURL;
+        data.reviewDate = new Date();
+        await axiosSecure.post('/reviews',data).then((res) => {
+            console.log('after add scholarship:',res.data)
+            if(res.data.insertedId){
+                Swal.fire({
+                    // position: "top-end",
+                    icon: "success",
+                    title: "Review SuccessFully Added",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } 
+        })
+        resetReview(); 
+        document.getElementById("reviewModal").close();
+    }
+
+
+
     return (
         <div>
             <h1 className="text-4xl text-center mb-5">My Application: {myApplications.length}</h1>
@@ -180,7 +211,7 @@ const MyApplications = () => {
                                     <span className="hidden lg:inline">Edit</span>
                                 </button>
 
-                                {/* Pay Update */}
+                                {/* Pay  */}
                                 {
                                     application.paymentStatus === 'unpaid' && <button
                                     onClick={() => handlePayment(application)}
@@ -199,13 +230,31 @@ const MyApplications = () => {
                                     (application.applicationStatus === 'pending' || application.applicationStatus === 'draft')  && 
                                     <button
                                         onClick={()=> handleRemoveApplication(application)}
-                                        className={`btn btn-sm bg-red-500 text-white hover:bg-red-600 tooltip ${application.applicationStatus === 'rejected'  && "btn-disabled "}`}
+                                        className={`btn btn-sm bg-red-500 text-white hover:bg-red-600 tooltip`}
                                         data-tip="Cancel Application"
                                     >
                                         <XCircle className="w-4 h-4" />
                                         <span className="hidden lg:inline">Delete</span>
                                     </button>
                                 }
+
+                                {/* Review */}
+                                {
+                                    application.applicationStatus === 'completed' && 
+                                    <button
+                                        className={`btn btn-sm bg-green-500 text-white hover:bg-green-600 tooltip ${application.applicationStatus === 'rejected'  && "btn-disabled "}`}
+                                        data-tip="Add Review"
+                                        onClick={()=> {
+                                            setSelectedApplication(application);
+                                            document.getElementById('reviewModal').showModal()}
+                                        }
+                                    >
+                                        
+                                        <MessageSquarePlus className="w-4 h-4"/>
+                                        <span className="hidden lg:inline">Review</span>
+                                    </button>
+                                }
+                                
                                 
                             </td>
 
@@ -220,13 +269,13 @@ const MyApplications = () => {
                 <dialog id="editModal" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
                         <h3 className="font-semibold text-lg mb-2">Add Contact Info & Note</h3>
-                        <form onSubmit={handleSubmit(handleEdit)} className='w-full'>
+                        <form onSubmit={handleEditSubmit(handleEdit)} className='w-full'>
                             <div>
                                 <label className="label text-sm my-1">
                                 <span className="">Phone Number</span>
                                 </label>
                                 <input
-                                {...register("phone", { required: true })}
+                                {...registerEdit("phone", { required: true })}
                                 type="tel"
                                 name="phone"
                                 defaultValue={selectedApplication?.phone || ""}
@@ -238,14 +287,14 @@ const MyApplications = () => {
                                 <label className="label text-sm my-1">
                                     <span className="label-text">Note to Admin</span>
                                 </label>
-                                <textarea {...register("userNote", { required: true })} className="textarea h-24 w-full" placeholder="Write any message or additional information..."></textarea>
+                                <textarea {...registerEdit("userNote", { required: true })} className="textarea h-24 w-full" placeholder="Write any message or additional information..."></textarea>
                             </div>
                             
                             <div className='modal-action flex justify-between mt-4'>
                                 <button type='submit' className="btn bg-primary text-white">Submit</button>
                                 <button type='button' className="btn bg-red-500 text-white"
                                     onClick={() => {
-                                        reset();
+                                        resetEdit();
                                         document.getElementById("editModal").close();
                                     }}
                                 >Close</button>
@@ -350,6 +399,42 @@ const MyApplications = () => {
                         </div>
                     </div>
                 </dialog>
+
+                <dialog id="reviewModal" className="modal modal-bottom sm:modal-middle ">
+                    <div className="modal-box">
+                        <h3 className="font-semibold text-lg mb-2">Add Review</h3>
+                        <form onSubmit={handleReviewSubmit(handleReview)} className='w-full'>
+                            <div>
+                                <label className="label text-sm my-1">
+                                <span className="">Rating</span>
+                                </label>
+                                <input
+                                {...registerReview("ratingPoint", { required: true })}
+                                type="number"
+                                placeholder="any 1 to 5"
+                                className="input input-bordered w-full"
+                                />
+                            </div>
+                            <div>
+                                <label className="label text-sm my-1">
+                                    <span className="label-text">Comment</span>
+                                </label>
+                                <textarea {...registerReview("reviewComment", { required: true })} className="textarea h-24 w-full" placeholder="Write any message or additional information..."></textarea>
+                            </div>
+                            
+                            <div className='modal-action flex justify-between mt-4'>
+                                <button type='submit' className="btn bg-primary text-white">Submit</button>
+                                <button type='button' className="btn bg-red-500 text-white"
+                                    onClick={() => {
+                                        resetReview();
+                                        document.getElementById("reviewModal").close();
+                                    }}
+                                >Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+                
             </div>
         </div>
     );
