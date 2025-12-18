@@ -40,11 +40,11 @@ const AllScholarships = () => {
         <Loading></Loading>
     }
 
-    useEffect(() => {
-        setCurrentPage(1);
-        }, [searchText, filterType, filterValue]);
-
-
+    // pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentScholarships = allScholarship.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(allScholarship.length / itemsPerPage);
 
     console.log("from all scholarship: ", scholarships)
     return (
@@ -118,32 +118,43 @@ const AllScholarships = () => {
             {/* card section */}
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mx-5 md:mx-10'>
                 {
-                    allScholarship.map((scholarship,index) =>
+                    currentScholarships.map((scholarship,index) =>
                         <AllScholarshipsCard key={index} scholarship={scholarship}></AllScholarshipsCard>
                     )
                 }
             </div>
-
-            <div className="flex justify-center mt-10 gap-2 flex-wrap">
+            
+            {/* Pagination */}
+            <div className="flex justify-center gap-2 mt-8">
                 <button
                     disabled={currentPage === 1}
-                    onClick={() => setCurrentPage((p) => p - 1)}
+                    onClick={() => setCurrentPage(currentPage - 1)}
                     className="px-4 py-2 border rounded disabled:opacity-50"
                 >
                     Prev
                 </button>
 
-                <span className="px-4 py-2 font-medium">
-                    Page {currentPage}
-                </span>
+                {[...Array(totalPages).keys()].map((page) => (
+                    <button
+                    key={page}
+                    className={`px-4 py-2 border rounded ${
+                        currentPage === page + 1 ? 'bg-primary text-white' : ''
+                    }`}
+                    onClick={() => setCurrentPage(page + 1)}
+                    >
+                    {page + 1}
+                    </button>
+                ))}
 
                 <button
-                    onClick={() => setCurrentPage((p) => p + 1)}
-                    className="px-4 py-2 border rounded"
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    className="px-4 py-2 border rounded disabled:opacity-50"
                 >
                     Next
                 </button>
             </div>
+
 
         </div>
     );
