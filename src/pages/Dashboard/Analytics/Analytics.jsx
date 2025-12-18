@@ -8,6 +8,7 @@ import {
 } from "recharts";
 import CountUp from "react-countup";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../../components/Loading/Loading";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#845EC2", "#FF6F91", "#FF9671"];
 
@@ -22,7 +23,7 @@ const Analytics = () => {
     }
   });
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
   if (error) return <p className="text-center mt-10 text-red-500">Error loading analytics</p>;
 
   const {

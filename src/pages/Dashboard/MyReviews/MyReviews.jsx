@@ -71,7 +71,7 @@ const MyReviews = () => {
 
     return (
         <div>
-            <h1 className="text-4xl text-center mb-5">My Reviews: </h1>
+            <h1 className="text-4xl text-center mb-5">My Reviews: {myReviews.length}</h1>
             <div className="overflow-x-auto rounded-box border border-base-content/5">
                 <table className="table">
                     {/* head */}

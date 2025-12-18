@@ -45,9 +45,9 @@ const AllScholarships = () => {
             <div className="mx-5 md:mx-10 mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             
                 {/* search */}
-                <div className='w-full md:w-1/2'>
+                <div className='w-full md:w-1/2 '>
                     {/* <p className='my-2'>search input: {searchText}</p> */}
-                    <label className="input">
+                    <label className="input md:w-1/2">
                         <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                             strokeLinejoin="round"
@@ -64,14 +64,14 @@ const AllScholarships = () => {
                     </label>
                 </div>
                 {/* sort */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex gap-3 md:w-1/2 justify-end ">
                     <select
                     value={filterType}
                     onChange={(e) => {
                         setFilterType(e.target.value);
                         setFilterValue("");
                     }}
-                    className="select select-bordered w-full sm:w-52"
+                    className="select select-bordered w-1/2 md:w-1/3"
                     >
                     <option value="">All Scholarship</option>
                     <option value="country">Country</option>
@@ -82,7 +82,7 @@ const AllScholarships = () => {
                     <select
                         value={filterValue}
                         onChange={(e) => setFilterValue(e.target.value)}
-                        className="select select-bordered w-full sm:w-52"
+                        className="select select-bordered w-1/2 md:w-1/3"
                     >
                         <option value="">Select {filterType}</option>
                         {filterType === "country" && (

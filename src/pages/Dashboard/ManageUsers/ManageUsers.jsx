@@ -39,7 +39,7 @@ const ManageUsers = () => {
             confirmButtonText: `Yes, make ${newRole.role}!`
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/users/${user._id}`,newRole)
+                axiosSecure.patch(`/users/${user._id}/role`,newRole)
                 .then(res => {
                     // console.log(res.data)
                     if(res.data.modifiedCount){
@@ -159,7 +159,7 @@ const ManageUsers = () => {
             }
             {/*---- table ----*/}
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table">
                     {/* head */}
                     <thead>
                     <tr>
@@ -196,9 +196,9 @@ const ManageUsers = () => {
                         <td className='flex'>
                             <>
                                 <button onClick={()=>handleMakePromote(user)} 
-                                className={`btn bg-green-400 mr-2 ${user.role === 'admin' && "btn-disabled"}`}><FaUserCheck /></button>
+                                className={`btn bg-green-400 mr-2 ${user.role === 'Admin' && "btn-disabled"}`}><FaUserCheck /></button>
                                 <button onClick={()=>handleMakeDemote(user)} 
-                                className={`btn bg-blue-400 ${user.role === 'user' && "btn-disabled"}`}><FaUserTimes /></button > 
+                                className={`btn bg-blue-400 ${user.role === 'Student' && "btn-disabled"}`}><FaUserTimes /></button > 
                             </>
                         </td>
                         <th className=''>

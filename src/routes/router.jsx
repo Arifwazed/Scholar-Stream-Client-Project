@@ -22,6 +22,7 @@ import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
 import Analytics from "../pages/Dashboard/Analytics/Analytics";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -74,25 +75,33 @@ export const router = createBrowserRouter([
         // admin related routes
         {
             path: 'add-scholarship',
-            element: <AddScholarship></AddScholarship>
+            element: <AdminRoute>
+                <AddScholarship></AddScholarship>
+            </AdminRoute>
         },
         {
             path: 'manage-scholarships',
-            element: <ManageScholarships></ManageScholarships>,
+            element: <AdminRoute>
+                <ManageScholarships></ManageScholarships>
+            </AdminRoute>,
         },
+        {
+            path: 'manage-users',
+            element: <AdminRoute>
+                <ManageUsers></ManageUsers>
+            </AdminRoute>,
+        },
+        {
+            path: 'analytics',
+            element: <AdminRoute>
+                <Analytics></Analytics>
+            </AdminRoute>,
+        },
+        // user related routes
         {
             path: 'update-scholarships/:id',
             element: <UpdateScholarship></UpdateScholarship>,
         },
-        {
-            path: 'manage-users',
-            element: <ManageUsers></ManageUsers>,
-        },
-        {
-            path: 'analytics',
-            element: <Analytics></Analytics>
-        },
-        // user related routes
         {
             path: 'payment/:scholarshipId',
             Component: Payment,
@@ -125,3 +134,6 @@ export const router = createBrowserRouter([
     ]
   }
 ]);
+
+// http://localhost:5173/dashboard/manage-scholarships
+// http://localhost:5173/dashboard/analytics

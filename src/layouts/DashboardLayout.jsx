@@ -9,8 +9,10 @@ import { LuFolderSync } from 'react-icons/lu';
 import { PiChartLineUpFill } from 'react-icons/pi';
 import { ClipboardList, FileText, Send } from 'lucide-react';
 import { GoCodeReview } from "react-icons/go";
+import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
+    const {role} = useRole();
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -44,7 +46,7 @@ const DashboardLayout = () => {
                                 </div>
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink
                                 to="/dashboard"
                                 data-tip="Homepage"
@@ -63,7 +65,7 @@ const DashboardLayout = () => {
 
                                 <span className="is-drawer-close:hidden">Homepage</span>
                             </NavLink>
-                        </li>
+                        </li> */}
 
                         <li>
                             <NavLink
@@ -82,127 +84,147 @@ const DashboardLayout = () => {
                        
 
                         {/*Only Admin Related */}
-                        <li>
-                            <NavLink
-                                to="/dashboard/add-scholarship"
-                                data-tip="Add Scholarship"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <MdAssignmentAdd className="size-5"/>
-                                <span className="is-drawer-close:hidden">Add Scholarship</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/manage-scholarships"
-                                data-tip="Manage Scholarships"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <LuFolderSync className="size-5"/>
-                                <span className="is-drawer-close:hidden">Manage Scholarships</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/manage-users"
-                                data-tip="Manage Users"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <FaHospitalUser className="size-5"/>
-                                <span className="is-drawer-close:hidden">Manage Users</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/manage-applications"
-                                data-tip="Manage Applications"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <MdMarkEmailRead  className="size-5"/>
-                                {/* <MdContactMail className="size-5"/> */}
-                                {/* <FaHospitalUser className="size-5"/> */}
-                                <span className="is-drawer-close:hidden">Manage Applications</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/all-reviews"
-                                data-tip="All Reviews"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <MdOutlineRateReview   className="size-5"/>
-                                {/* <MdContactMail className="size-5"/> */}
-                                {/* <FaHospitalUser className="size-5"/> */}
-                                <span className="is-drawer-close:hidden">All Reviews</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/my-applications"
-                                data-tip="My Applications"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
+                        {
+                            role === 'Admin' && <>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/add-scholarship"
+                                        data-tip="Add Scholarship"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <MdAssignmentAdd className="size-5"/>
+                                        <span className="is-drawer-close:hidden">Add Scholarship</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/manage-scholarships"
+                                        data-tip="Manage Scholarships"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <LuFolderSync className="size-5"/>
+                                        <span className="is-drawer-close:hidden">Manage Scholarships</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/manage-users"
+                                        data-tip="Manage Users"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <FaHospitalUser className="size-5"/>
+                                        <span className="is-drawer-close:hidden">Manage Users</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/analytics"
+                                        data-tip="Analytics"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <PiChartLineUpFill className="size-5"/>
+                                        {/* <LuFolderSync className="size-5"/> */}
+                                        <span className="is-drawer-close:hidden">Analytics</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+                        {/* Only Moderator Related */}
+                        {
+                            role === 'Moderator' && <>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/manage-applications"
+                                        data-tip="Manage Applications"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <MdMarkEmailRead  className="size-5"/>
+                                        {/* <MdContactMail className="size-5"/> */}
+                                        {/* <FaHospitalUser className="size-5"/> */}
+                                        <span className="is-drawer-close:hidden">Manage Applications</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/all-reviews"
+                                        data-tip="All Reviews"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <MdOutlineRateReview   className="size-5"/>
+                                        {/* <MdContactMail className="size-5"/> */}
+                                        {/* <FaHospitalUser className="size-5"/> */}
+                                        <span className="is-drawer-close:hidden">All Reviews</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+                        {/* Only Student Related */}
+                        {
+                            role === 'Student' && <>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/my-applications"
+                                        data-tip="My Applications"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        
+                                        
+                                        <FileText className="size-5"/>
+                                        <span className="is-drawer-close:hidden">My Applications</span>
+                                    </NavLink>
+                                </li>
                                 
-                                
-                                <FileText className="size-5"/>
-                                <span className="is-drawer-close:hidden">My Applications</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/my-reviews"
-                                data-tip="My Reviews"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <GoCodeReview  className="size-5"/>
-                                {/* <MdContactMail className="size-5"/> */}
-                                {/* <FaHospitalUser className="size-5"/> */}
-                                <span className="is-drawer-close:hidden">My Reviews</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/analytics"
-                                data-tip="Analytics"
-                                className={({ isActive }) =>
-                                `is-drawer-close:tooltip is-drawer-close:tooltip-right
-                                flex items-center gap-3 p-2 rounded-xl transition
-                                ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
-                                }
-                            >
-                                <PiChartLineUpFill className="size-5"/>
-                                {/* <LuFolderSync className="size-5"/> */}
-                                <span className="is-drawer-close:hidden">Analytics</span>
-                            </NavLink>
-                        </li>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/my-reviews"
+                                        data-tip="My Reviews"
+                                        className={({ isActive }) =>
+                                        `is-drawer-close:tooltip is-drawer-close:tooltip-right
+                                        flex items-center gap-3 p-2 rounded-xl transition
+                                        ${isActive ? "bg-white text-[#4F5CC3] font-bold" : "text-white hover:bg-[#5b6ae0]"}`
+                                        }
+                                    >
+                                        <GoCodeReview  className="size-5"/>
+                                        {/* <MdContactMail className="size-5"/> */}
+                                        {/* <FaHospitalUser className="size-5"/> */}
+                                        <span className="is-drawer-close:hidden">My Reviews</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
 
                         {/* List item */}
                         <li>
