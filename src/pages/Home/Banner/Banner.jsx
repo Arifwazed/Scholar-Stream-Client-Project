@@ -3,7 +3,7 @@ import heroImg from '../../../assets/hero3.png'
 
 const Banner = () => {
     return (
-        <div className='border-2 flex flex-col md:flex-row p-5 md:px-16 bg-[#B1BFE8] items-center'>
+        <div className=' flex flex-col md:flex-row p-5 md:px-16 bg-[#B1BFE8] items-center'>
             <div className='flex-2 space-y-7'>
                 <h1 className='font-semibold text-3xl md:text-5xl max-w-180'>Unlock Your Future with Global <span className='text-[#4F5CC3]'>Scholarship Opportunities</span></h1>
                 <p className=' md:text-xl max-w-180'>Discover top scholarship programs from around the world. Explore, apply, and take the next step toward your academic success—all in one place.</p>

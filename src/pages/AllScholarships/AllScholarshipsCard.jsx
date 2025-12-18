@@ -8,7 +8,7 @@ const AllScholarshipsCard = ({scholarship}) => {
         <div>
             
             
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl shadow-md p-4 hover:shadow-xl hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+            <div className="bg-linear-to-r from-blue-50 to-purple-50 rounded-3xl shadow-md p-4 hover:shadow-xl hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
                 {/* University Image */}
                 <div className="w-full h-44 overflow-hidden rounded-3xl bg-white">
                     <img

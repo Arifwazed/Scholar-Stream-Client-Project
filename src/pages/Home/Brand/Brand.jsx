@@ -14,7 +14,7 @@ import bbc from '../../../assets/brands/bbc.png'
 const Brand = () => {
     const brands = [amazon,amazon_vector,casio,moonstar,randstad,star,start_people,bbc];
     return (
-        <div className='border py-12'>
+        <div className=' py-12'>
             <div className='text-center mb-8'>
                 <h1 className="text-primary text-4xl md:text-5xl font-semibold">In the Spotlight</h1>
                 <p className='my-3 text-lg md:text-xl text-gray-600'>ScholarStream has been highlighted by top magazines, media outlets, and educational platforms.</p>

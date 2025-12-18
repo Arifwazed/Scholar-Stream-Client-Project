@@ -21,31 +21,39 @@ const Faq = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
     return (
-        <div className="max-w-full mx-auto px-4 md:px-40 py-16 border">
+        <div className="max-w-full mx-auto px-4 md:px-40 py-12 ">
             <div className='text-center mb-8'>
                 <h2 className="text-primary text-4xl md:text-5xl font-semibold">Frequently Asked Questions</h2>
                 <p className='my-3 text-lg md:text-xl text-gray-600'>Got questions about scholarships or using ScholarStream? Explore our FAQs to find clear answers and make your scholarship journey easier.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
                 {faqs.map((faq, index) => (
-                <div key={index} className="border border-primary rounded-lg shadow-sm overflow-hidden self-start">
+                <div className="border border-primary rounded-lg shadow-sm overflow-hidden self-start group">
                     <button
-                    onClick={() => toggle(index)}
-                    className={`w-full text-left font-medium text-lg flex justify-between items-center p-4 hover:bg-primary hover:text-white transition-colors ${
-                        openIndex === index ? 'bg-primary text-white' : 'bg-white text-gray-800'
-                    }`}
+                        onClick={() => toggle(index)}
+                        className={`relative w-full text-left font-medium text-lg flex justify-between items-center p-4 transition-colors
+                        ${openIndex === index
+                            ? 'bg-primary text-white'
+                            : 'bg-linear-to-r from-blue-50 to-purple-50 text-gray-800'
+                        }`}
                     >
-                    {faq.q}
-                    <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
+                        {faq.q}
+                        <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
+
+                        {/* Hover overlay */}
+                        {openIndex !== index && (
+                        <span className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-40 transition-opacity rounded-lg"></span>
+                        )}
                     </button>
                     <div
-                    className={`transition-max-height duration-500 ease-in-out overflow-hidden bg-[#7280df]  ${
-                        openIndex === index ? "max-h-40 p-4 " : "max-h-0"
-                    }`}
+                        className={`transition-max-height duration-500 ease-in-out overflow-hidden bg-[#7280df] ${
+                        openIndex === index ? "max-h-40 p-4" : "max-h-0"
+                        }`}
                     >
-                    <p className="text-white">{faq.a}</p>
+                        <p className="text-white">{faq.a}</p>
                     </div>
                 </div>
+
                 ))}
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import AllScholarshipsCard from './AllScholarshipsCard';
 import { useQuery } from '@tanstack/react-query';
@@ -12,15 +12,19 @@ const AllScholarships = () => {
     // const [roleFilter, setRoleFilter] = useState("");
     const [filterType, setFilterType] = useState(""); // country | category
     const [filterValue, setFilterValue] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
 
     const {data : allScholarship = [],isLoading} = useQuery({
-        queryKey: ['allScholarship',searchText,filterType,filterValue],
+        queryKey: ['allScholarship',searchText,filterType,filterValue,currentPage],
         queryFn: async () => {
             // const res = await axiosSecure.get(`/scholarships?searchText=${searchText}`,{
             const res = await axiosSecure.get(`/scholarships`,{
                 // params: roleFilter ? { role: roleFilter } : {}
                 params: {
                     searchText,
+                    page: currentPage,
+                    limit: itemsPerPage,
                     ...(filterType === "country" && filterValue && {
                         country: filterValue,
                     }),
@@ -35,6 +39,13 @@ const AllScholarships = () => {
     if(isLoading){
         <Loading></Loading>
     }
+
+    useEffect(() => {
+        setCurrentPage(1);
+        }, [searchText, filterType, filterValue]);
+
+
+
     console.log("from all scholarship: ", scholarships)
     return (
         <div className='bg-[#e7f4ff] py-10'>
@@ -112,6 +123,28 @@ const AllScholarships = () => {
                     )
                 }
             </div>
+
+            <div className="flex justify-center mt-10 gap-2 flex-wrap">
+                <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage((p) => p - 1)}
+                    className="px-4 py-2 border rounded disabled:opacity-50"
+                >
+                    Prev
+                </button>
+
+                <span className="px-4 py-2 font-medium">
+                    Page {currentPage}
+                </span>
+
+                <button
+                    onClick={() => setCurrentPage((p) => p + 1)}
+                    className="px-4 py-2 border rounded"
+                >
+                    Next
+                </button>
+            </div>
+
         </div>
     );
 };
