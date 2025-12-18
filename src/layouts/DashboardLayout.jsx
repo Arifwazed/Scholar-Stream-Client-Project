@@ -67,7 +67,7 @@ const DashboardLayout = () => {
 
                         <li>
                             <NavLink
-                                to="Profile"
+                                to="/dashboard/my-profile"
                                 data-tip="My Profile"
                                 className={({ isActive }) =>
                                 `is-drawer-close:tooltip is-drawer-close:tooltip-right

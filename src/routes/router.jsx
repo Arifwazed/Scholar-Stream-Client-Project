@@ -21,6 +21,7 @@ import MyApplications from "../pages/Dashboard/MyApplications/MyApplications";
 import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
 import Analytics from "../pages/Dashboard/Analytics/Analytics";
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
         {
             index: true,
             Component: DashboardHome,
+        },
+        {
+            path: 'my-profile',
+            element: <MyProfile></MyProfile>
         },
         // admin related routes
         {
