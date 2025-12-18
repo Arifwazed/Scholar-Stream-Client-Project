@@ -190,7 +190,7 @@ const DashboardLayout = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="Analytics"
+                                to="/dashboard/analytics"
                                 data-tip="Analytics"
                                 className={({ isActive }) =>
                                 `is-drawer-close:tooltip is-drawer-close:tooltip-right

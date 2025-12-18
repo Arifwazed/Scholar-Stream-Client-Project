@@ -20,6 +20,7 @@ import ManageApplications from "../pages/Dashboard/ManageApplications/ManageAppl
 import MyApplications from "../pages/Dashboard/MyApplications/MyApplications";
 import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
+import Analytics from "../pages/Dashboard/Analytics/Analytics";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         {
             path: 'manage-users',
             element: <ManageUsers></ManageUsers>,
+        },
+        {
+            path: 'analytics',
+            element: <Analytics></Analytics>
         },
         // user related routes
         {
