@@ -16,7 +16,6 @@ The goal of the project is to simplify the scholarship application process, impr
 
 🔗 **Server Repository:** [https://github.com/your-username/scholarstream-server](https://github.com/your-username/scholarstream-server)
 
-> Replace the URLs with your actual deployed links.
 
 ---
 
