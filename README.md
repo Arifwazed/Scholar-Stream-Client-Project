@@ -11,8 +11,8 @@ The goal of the project is to simplify the scholarship application process, impr
 ## 🌐 Live URL
 
 🔗 **Live Site:** [https://your-live-site-url.com](https://your-live-site-url.com)
-🔗 **Client Repository:** [https://github.com/your-username/scholarstream-client](https://github.com/your-username/scholarstream-client)
-🔗 **Server Repository:** [https://github.com/your-username/scholarstream-server](https://github.com/your-username/scholarstream-server)
+*🔗 **Client Repository:** [https://github.com/your-username/scholarstream-client](https://github.com/your-username/scholarstream-client)
+*🔗 **Server Repository:** [https://github.com/your-username/scholarstream-server](https://github.com/your-username/scholarstream-server)
 
 > Replace the URLs with your actual deployed links.
 
