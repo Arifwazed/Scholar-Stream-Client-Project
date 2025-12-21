@@ -140,8 +140,3 @@ Make sure to add your `.env` files for Firebase and MongoDB credentials.
 Aspiring Full-Stack Developer
 Bangladesh 🇧🇩
 
----
-
-## 📄 License
-
-This project is for educational purposes only.
