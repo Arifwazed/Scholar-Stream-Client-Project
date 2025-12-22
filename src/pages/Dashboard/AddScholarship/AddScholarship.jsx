@@ -50,7 +50,7 @@ const AddScholarship = () => {
                 <input
                   type="text"
                   {...register("scholarshipName", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Enter scholarship name"
                 />
                 {errors.scholarshipName && <p className="text-red-500 text-sm">Required</p>}
@@ -62,7 +62,7 @@ const AddScholarship = () => {
                 <input
                   type="text"
                   {...register("universityName", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Enter university name"
                 />
                 {errors.universityName && <p className="text-red-500 text-sm">Required</p>}
@@ -74,7 +74,7 @@ const AddScholarship = () => {
                 <input
                   type="text"
                   {...register("universityImage", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Direct image URL"
                 />
                 {errors.universityImage && <p className="text-red-500 text-sm">Required</p>}
@@ -87,7 +87,7 @@ const AddScholarship = () => {
                   <input
                     type="text"
                     {...register("universityCountry", { required: true })}
-                    className="input input-bordered w-full mt-1"
+                    className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                     placeholder="Country"
                   />
                   {errors.universityCountry && <p className="text-red-500 text-sm">Required</p>}
@@ -98,7 +98,7 @@ const AddScholarship = () => {
                   <input
                     type="text"
                     {...register("universityCity", { required: true })}
-                    className="input input-bordered w-full mt-1"
+                    className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                     placeholder="City"
                   />
                   {errors.universityCity && <p className="text-red-500 text-sm">Required</p>}
@@ -111,7 +111,7 @@ const AddScholarship = () => {
                 <input
                   type="number"
                   {...register("universityWorldRank", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="e.g. 200"
                 />
                 {errors.universityWorldRank && <p className="text-red-500 text-sm">Required</p>}
@@ -123,7 +123,7 @@ const AddScholarship = () => {
                 <input
                   type="text"
                   {...register("subjectCategory", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="e.g. Engineering, Medical, Business"
                 />
                 {errors.subjectCategory && <p className="text-red-500 text-sm">Required</p>}
@@ -146,7 +146,7 @@ const AddScholarship = () => {
                 <select
                   {...register("scholarshipCategory", { required: true })}
                   defaultValue="Select Category"
-                  className="select select-bordered w-full mt-1"
+                  className="select select-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                 >
                   <option disabled={true}>Select Category</option>
                   <option value="Full Fund">Full Fund</option>
@@ -173,7 +173,7 @@ const AddScholarship = () => {
                 <select
                   {...register("degree", { required: true })}
                   defaultValue="Select Degree"
-                  className="select select-bordered w-full mt-1"
+                  className="select select-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-50 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option disabled={true}>Select Degree</option>
                   <option value="Bachelor">Bachelor</option>
@@ -190,7 +190,7 @@ const AddScholarship = () => {
                 <input
                   type="number"
                   {...register("tuitionFees")}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="0 or leave empty"
                 />
               </div>
@@ -201,7 +201,7 @@ const AddScholarship = () => {
                 <input
                   type="number"
                   {...register("applicationFees", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Enter amount"
                 />
                 {errors.applicationFees && <p className="text-red-500 text-sm">Required</p>}
@@ -213,7 +213,7 @@ const AddScholarship = () => {
                 <input
                   type="number"
                   {...register("serviceCharge", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Enter amount"
                 />
                 {errors.serviceCharge && <p className="text-red-500 text-sm">Required</p>}
@@ -225,7 +225,7 @@ const AddScholarship = () => {
                 <input
                   type="date"
                   {...register("applicationDeadline", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                 />
                 {errors.applicationDeadline && <p className="text-red-500 text-sm">Required</p>}
               </div>
@@ -236,7 +236,7 @@ const AddScholarship = () => {
                 <input
                   type="date"
                   {...register("scholarshipPostDate", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                 />
                 {errors.scholarshipPostDate && <p className="text-red-500 text-sm">Required</p>}
               </div>
@@ -247,7 +247,7 @@ const AddScholarship = () => {
                 <input
                   type="email"
                   {...register("postedUserEmail", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Enter your email"
                   defaultValue={user?.email}
                 />
@@ -259,14 +259,14 @@ const AddScholarship = () => {
                 <label className="">Scholarship Description</label>
                 <textarea
                   {...register("scholarshipDescription", { required: true })}
-                  className="textarea w-full mt-1"
+                  className="textarea w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur"
                   placeholder="Scholarship Description"
                 ></textarea>
                 {errors.scholarshipDescription && <p className="text-red-500 text-sm">Required</p>}
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="btn btn-primary w-full mt-4">
+              <button type="submit" className="btn btn-primary text-white w-full mt-4">
                 Create Scholarship
               </button>
 
