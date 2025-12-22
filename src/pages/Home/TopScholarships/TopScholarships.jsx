@@ -36,7 +36,8 @@ const TopScholarships = () => {
     return (
         <div className='bg-[#e7f4ff] py-12'>
             <div className='text-center mb-8'>
-                <h2 className="text-primary text-4xl md:text-5xl font-semibold">Top Scholarships</h2>
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Top Scholarships</span></h2>
+
                 <p className='my-3 text-lg md:text-xl text-gray-600'>Explore top scholarship opportunities selected to help you achieve your academic goals.</p>
             </div>
 

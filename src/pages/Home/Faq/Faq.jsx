@@ -23,7 +23,7 @@ const Faq = () => {
     return (
         <div className="max-w-full mx-auto px-4 md:px-40 py-12 ">
             <div className='text-center mb-8'>
-                <h2 className="text-primary text-4xl md:text-5xl font-semibold">Frequently Asked Questions</h2>
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Frequently Asked Questions</span></h2>
                 <p className='my-3 text-lg md:text-xl text-gray-600'>Got questions about scholarships or using ScholarStream? Explore our FAQs to find clear answers and make your scholarship journey easier.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">

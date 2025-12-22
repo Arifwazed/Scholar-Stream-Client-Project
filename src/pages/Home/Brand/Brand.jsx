@@ -16,7 +16,8 @@ const Brand = () => {
     return (
         <div className=' py-12'>
             <div className='text-center mb-8'>
-                <h1 className="text-primary text-4xl md:text-5xl font-semibold">In the Spotlight</h1>
+                
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">In the Spotlight</span></h2>
                 <p className='my-3 text-lg md:text-xl text-gray-600'>ScholarStream has been highlighted by top magazines, media outlets, and educational platforms.</p>
             </div>
 
