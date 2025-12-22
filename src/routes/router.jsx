@@ -23,11 +23,14 @@ import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
 import Analytics from "../pages/Dashboard/Analytics/Analytics";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AdminRoute from "./AdminRoute";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
+import DashboardOverview from "../pages/Dashboard/DashboardOverview/DashboardOverview";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
         {
             index: true,
@@ -69,6 +72,10 @@ export const router = createBrowserRouter([
         {
             index: true,
             Component: DashboardHome,
+        },
+        {
+            path: 'overview',
+            element: <DashboardOverview></DashboardOverview>
         },
         {
             path: 'my-profile',

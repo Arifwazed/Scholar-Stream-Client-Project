@@ -40,17 +40,17 @@ const Login = () => {
     }
     return (
         <div>
-            <div className="hero min-h-screen bg-gradient-to-r from-[#D5FEFE] to-[#AFE6E5]">
-                <div className="card bg-[#87dede] w-full max-w-sm shrink-0 shadow-2xl px-2">
+            <div className="hero min-h-screen bg-[#e7f4ff]">
+                <div className="card inset-0 bg-linear-to-r from-blue-50 to-purple-60 rounded-2xl p-8 border border-gray-200 w-full max-w-sm shrink-0 shadow-2xl px-2">
                     <div className="card-body">
-                        <h1 className="text-3xl font-bold text-center text-primary-gradient">Welcome Back!</h1>
+                        <h1 className="text-3xl font-bold text-center text-primary-gradient"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Welcome Back!</span></h1>
                         <form onSubmit={handleSubmit(handleLogin)}>
                             <fieldset className="fieldset">
                                 {/* Email */}
                                 <label className="label text-gray-700">Email</label>
                                 <input 
                                     type="email" 
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl" 
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl" 
                                     placeholder="Enter your email"
                                     {...register('email',{required: true})}
                                 />
@@ -61,7 +61,7 @@ const Login = () => {
                                 <label className="label text-gray-700">Password</label>
                                 <input 
                                     type="password" 
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl" 
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl" 
                                     placeholder="Password" 
                                     {...register('password',{required: true,minLength: 6})}
                                 />
@@ -73,7 +73,7 @@ const Login = () => {
                                 }
                                 
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-register border-none shadow-none bg-[#229D9C] text-white mt-4 rounded-xl">Login</button>
+                                <button className="btn btn-primary border-none shadow-none text-white mt-4 rounded-xl">Login</button>
                                 <div className='flex justify-center items-center gap-3 text-gray-500 my-2'>
                                     <hr className='w-1/2'/>
                                     <p>OR</p>
@@ -83,7 +83,7 @@ const Login = () => {
                                 <SocialLogin></SocialLogin>
                                 <p className="text-center my-3 text-xs font-semibold dark:text-black">
                                     Don’t have any account ?{" "}
-                                    <Link to="/register" className="text-[#229D9C]">
+                                    <Link to="/register" className="text-primary font-bold">
                                     Register
                                     </Link>{" "}
                                 </p>

@@ -119,8 +119,8 @@ const ManageUsers = () => {
     }
 
     return (
-        <div>
-            <h1 className="text-4xl text-center">Manage Users: {users.length}</h1>
+        <div className="p-4 space-y-3">
+            <h1 className="text-3xl md:text-4xl font-bold text-center "> <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Manage Users: {users.length}</span></h1>
             {/*---- search ----*/}
             {/* <p className='my-2'>search input: {searchText}</p> */}
             <div className='flex justify-between items-center gap-2'>

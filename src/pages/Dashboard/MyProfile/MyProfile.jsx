@@ -42,7 +42,7 @@ const MyProfile = () => {
         transition={{ duration: 0.4 }}
         className="text-3xl md:text-4xl font-bold mb-8 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
-        My Profile
+        <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text">My Profile</span> 
         </motion.h1>
 
         {/* Profile Wrapper */}

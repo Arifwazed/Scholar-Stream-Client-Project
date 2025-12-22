@@ -34,8 +34,8 @@ const AddScholarship = () => {
     reset();
   };
   return (
-      <div>
-          <h1 className="text-4xl">Add Scholarship</h1>
+      <div className="p-4 space-y-5">
+          <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Add Scholarship</span></h1>
 
           <div className="max-w-3xl mx-auto bg-linear-to-r from-blue-50 to-purple-50 shadow-xl rounded-2xl p-8 border border-gray-200">
             <h2 className="text-2xl font-bold mb-6 text-center text-[#4F5CC3]">

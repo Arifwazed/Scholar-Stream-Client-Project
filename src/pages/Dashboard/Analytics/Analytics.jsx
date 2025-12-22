@@ -37,7 +37,7 @@ const Analytics = () => {
 
   return (
     <div className="p-6 space-y-10">
-        <h1 className="text-3xl font-bold text-center">📊 Platform Analytics</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center ">📊 <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Platform Analytics</span></h1>
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white shadow rounded-xl p-6 text-center">

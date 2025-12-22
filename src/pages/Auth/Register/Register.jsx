@@ -160,17 +160,17 @@ const Register = () => {
     }
     return (
         <div>
-            <div className="hero min-h-screen bg-gradient-to-r from-[#D5FEFE] to-[#AFE6E5]">
-                <div className="card bg-[#87dede] w-full max-w-sm shrink-0 shadow-2xl px-2">
+            <div className="hero min-h-screen bg-[#e7f4ff]">
+                <div className="card inset-0 bg-linear-to-r from-blue-50 to-purple-70 w-full max-w-sm shrink-0 shadow-2xl px-2">
                     <div className="card-body">
-                        <h1 className="text-3xl font-bold text-center text-primary-gradient">Register Your Account</h1>
+                        <h1 className="text-3xl font-bold text-center text-primary-gradient my-3"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Register Your Account</span></h1>
                         <form onSubmit={handleSubmit(handleRegister)}>
                             <fieldset className="fieldset">
                                 {/* Name */}
                                 <label className="label text-gray-700">Your Name</label>
                                 <input
                                     type="text"
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl"
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl"
                                     placeholder="Enter your name"
                                     {...register("name",{required: true})}
                                 />
@@ -181,7 +181,7 @@ const Register = () => {
                                 <label className="label text-gray-700">Photo URL</label>
                                 <input
                                     type="text"
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl"
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl"
                                     placeholder="Enter Photo URL"
                                     {...register('photo',{required: true})}
                                     
@@ -193,7 +193,7 @@ const Register = () => {
                                 <label className="label text-gray-700">Email</label>
                                 <input 
                                     type="email" 
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl" 
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl" 
                                     placeholder="Enter your email"
                                     {...register('email',{required: true})}
                                 />
@@ -204,7 +204,7 @@ const Register = () => {
                                 <label className="label text-gray-700">Password</label>
                                 <input 
                                     type="password" 
-                                    className="input w-full bg-white/50 border-white/20 text-gray-700 rounded-xl" 
+                                    className="input w-full bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur text-gray-700 rounded-xl" 
                                     placeholder="Password" 
                                     {...register('password',{required: true,minLength: 6, pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).+$/})}
                                 />
@@ -218,7 +218,7 @@ const Register = () => {
                                     errors.password?.type === 'pattern' && <p className='text-red-500'>Password must have one uppercase letter, one lower case letter and one special character</p>
                                 }
                                 {/* <div><a className="link link-hover">Forgot password?</a></div> */}
-                                <button className="btn btn-register border-none shadow-none bg-[#229D9C] text-white mt-4 rounded-xl">Register</button>
+                                <button className="btn btn-primary border-none shadow-none text-white mt-4 rounded-xl">Register</button>
                                 <div className='flex justify-center items-center gap-3 text-gray-500 my-2'>
                                     <hr className='w-1/2'/>
                                     <p>OR</p>
@@ -228,7 +228,7 @@ const Register = () => {
                                 <SocialLogin></SocialLogin>
                                 <p className="text-center my-3 text-xs font-semibold dark:text-black">
                                     Already have an Account ?{" "}
-                                    <Link to="/login" className="text-[#229D9C]">
+                                    <Link to="/login" className="text-primary font-bold">
                                     Login
                                     </Link>{" "}
                                 </p>

@@ -4,8 +4,8 @@ import logoImg3 from '../assets/logo3.png'
 
 const AuthLayout = () => {
     return (
-        <div className='bg-[#F2F9FF]'>
-            <div className="navbar bg-[#229D9C] shadow-sm md:px-10">
+        <div className='bg-[#e7f4ff]'>
+            <div className="navbar bg-[#4F5CC3] shadow-sm md:px-10">
             <div className="navbar-start">
                <div className='flex items-end '>                    
                     <img src={logoImg3} width={70} alt="" />
