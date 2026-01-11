@@ -10,7 +10,7 @@ The goal of the project is to simplify the scholarship application process, impr
 
 ## 🌐 Live URL
 
-🔗 **Live Site:** [https://money-flow-bc928.web.app/](https://money-flow-bc928.web.app/)
+🔗 **Live Site:** [https://scholar-stream-projects.web.app/](https://scholar-stream-projects.web.app/)
 
 🔗 **Client Repository:** [https://github.com/your-username/scholarstream-client](https://github.com/your-username/scholarstream-client)
 
