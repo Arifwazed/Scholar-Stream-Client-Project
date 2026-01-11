@@ -12,9 +12,9 @@ The goal of the project is to simplify the scholarship application process, impr
 
 🔗 **Live Site:** [https://scholar-stream-projects.web.app/](https://scholar-stream-projects.web.app/)
 
-🔗 **Client Repository:** [https://github.com/your-username/scholarstream-client](https://github.com/your-username/scholarstream-client)
+🔗 **Client Repository:** [https://github.com/Arifwazed/Scholar-Stream-Client-Project](https://github.com/Arifwazed/Scholar-Stream-Client-Project)
 
-🔗 **Server Repository:** [https://github.com/your-username/scholarstream-server](https://github.com/your-username/scholarstream-server)
+🔗 **Server Repository:** [https://github.com/Arifwazed/Scholar-Stream-Server-Project](https://github.com/Arifwazed/Scholar-Stream-Server-Project)
 
 
 ---
