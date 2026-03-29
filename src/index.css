@@ -1,15 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default;
+  themes: light --default, dark;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
   --color-primary: #4F5CC3;
+  /* --color-primary: #e7f4ff; */
   --color-secondary: #CAEB66;
+  --color-base-100: #4A4A4A;
+  /* --color-base-100: #d1d5dc; */
+  /* --color-base-100: #4a5565; */
+  /* --color-base-200: #e7f4ff; */
+  /* --color-base-200: #7F39BD; */
+
+  --color-gradient-start: #FFF0E9;
+  --color-gradient-end: #C5CFF5;
 }
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #000000;
+  --color-secondary: #CAEB66;
+
+  /* --color-base-100: #111827; */
+  --color-base-100: #d1d5dc;
+  --color-base-200: #1F2937;
+  --color-base-300: #374151;
+  --color-base-content: #F3F4F6;
+
+  --color-gradient-start: #1e293b;
+  --color-gradient-end: #111827;
+}
+
 
 body{
   .pt-serif-regular {
@@ -37,6 +62,10 @@ body{
   }
 }
 
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .btn-logout {
   background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
   transition: 0.5s;
@@ -47,4 +76,9 @@ body{
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+.my-swal-bg {
+  background: linear-gradient(to right, #dbeafe, #f3e8ff);
+  border-radius: 16px;
+  color: #1f2937; /* text color */
 }

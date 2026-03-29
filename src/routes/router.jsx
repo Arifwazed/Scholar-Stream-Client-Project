@@ -25,6 +25,9 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AdminRoute from "./AdminRoute";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardOverview from "../pages/Dashboard/DashboardOverview/DashboardOverview";
+import AboutUs from "../pages/Navlink/AboutUs";
+import ContactUs from "../pages/Navlink/ContactUs";
+import PrivacyTerms from "../pages/Navlink/PrivacyTerms";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +43,18 @@ export const router = createBrowserRouter([
             path: 'allScholarships',
             Component: AllScholarships,
             loader: () => fetch('./data/scholarships.json'),
+        },
+        {
+            path: 'aboutUs',
+            Component: AboutUs,
+        },
+        {
+            path: 'contactUs',
+            Component: ContactUs,
+        },
+        {
+            path:  'privacyTerms',
+            Component: PrivacyTerms,
         },
         {
             path: 'scholarshipDetails/:id',

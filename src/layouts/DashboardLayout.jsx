@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHospitalUser, FaUserCircle } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router';
 import Logo from '../components/Logo/Logo';
@@ -14,35 +14,79 @@ import useAuth from '../hooks/useAuth';
 
 const DashboardLayout = () => {
     const {role} = useRole();
-    const {user} = useAuth()
+    const {user} = useAuth();
+    const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 1024);
+
+    React.useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 1024);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const [theme, setTheme] = useState("light");
+    
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        setTheme(savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    }, []);
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
+
     return (
         <div>
-            <div className="drawer lg:drawer-open">
-                <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content">
+            <div className="drawer lg:drawer-open ">
+                {/* <input id="my-drawer-4" type="checkbox" className="drawer-toggle" defaultChecked/>*/}
+                <input
+                    id="my-drawer-4"
+                    type="checkbox"
+                    className="drawer-toggle"
+                    defaultChecked={isDesktop}
+                />
+                <div className="drawer-content bg-linear-to-tr from-(--color-gradient-start) to-(--color-gradient-end)">
                     {/* Navbar */}
-                    <nav className="navbar w-full bg-[#4F5CC3] text-white ">
-                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square bg-[#4F5CC3] border-none shadow-none">
-                            {/* Sidebar toggle icon */}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4 "><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
-                        </label>
+                    <nav className="navbar w-full text-base-100 justify-between">
+                        {/* navbar left */}
+                        <div className='flex items-center'>
+                            <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square bg-none border-none shadow-none bg-transparent">
+                                {/* Sidebar toggle icon */}
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-6 "><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
+                            </label>
 
-                        <div className=" p-2 ">
-                            <h1 className="text-2xl font-bold">Welcome Back, {user.displayName}!</h1>
-                            <p className="mt-1 text-slate-300">
-                            Here is your daily overview. Check Your  
-                            <span className="font-semibold text-yellow-400"> applications and reviews.</span>
-                            
-                            </p>
+                            <div className="p-2 ">
+                                <h1 className="text-2xl font-bold">Welcome Back, {user.displayName}!</h1>
+                                <p className="mt-1 ">
+                                Here is your daily overview. Check Your  
+                                <span className="font-semibold bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent"> applications and reviews.</span>
+                                
+                                </p>
+                            </div>
+                        </div>
+                        {/* navbar right */}
+                        <div className="navbar-end mr-3">
+                
+                            <button onClick={toggleTheme} className="btn btn-sm rounded-full border border-gray-600">
+                            {theme === "light" ? "🌙" : "☀️"}
+                            </button>
                         </div>
                     </nav>
+                    <hr className='border-gray-500'/>
                     {/* Page content here */}
-                    <div className="p-4 bg-[#e7f4ff] min-h-lvh">
+                    <div className="p-4 min-h-lvh">
                         <Outlet></Outlet>
                     </div>
                 </div>
                 
-                <div className="drawer-side is-drawer-close:overflow-visible ">
+                {/* sidebar */}
+                <div className="drawer-side ">
                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                     <div className="flex min-h-full flex-col items-start bg-[#4F5CC3] text-white is-drawer-close:w-14 is-drawer-open:w-64">
                     {/* Sidebar content here */}

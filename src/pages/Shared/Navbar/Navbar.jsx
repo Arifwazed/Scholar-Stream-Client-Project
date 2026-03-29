@@ -1,18 +1,47 @@
-import React from 'react';
-import Logo from '../../../components/Logo/Logo';
+import React, { useEffect, useState } from 'react';
 import logoImg3 from '../../../assets/logo3.png'
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
     const {user,loading,logOut} = useAuth();
+    const [scrolled, setScrolled] = useState(false);
+
+    // scrooll
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // dark-light mode
+    const [theme, setTheme] = useState("light");
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        setTheme(savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    }, []);
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
+
 
     const fallbackImg = "https://img.icons8.com/ios-filled/50/user-male-circle.png";
     const links = <>
         <li> <NavLink to="/" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Home</NavLink> </li>
         <li> <NavLink to="/allScholarships" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>All Scholarships</NavLink> </li>
-        {/* <li> <NavLink to="" className="text-white">All Scholarships</NavLink> </li> */}
-        <li> <NavLink to=""></NavLink></li>
+        <li> <NavLink to="/aboutUs" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>About Us</NavLink> </li>
+        <li> <NavLink to="/contactUs" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Contact Us</NavLink> </li>
+        <li> <NavLink to="/privacyTerms" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Privacy & Terms</NavLink> </li>
+        {/* <li> <NavLink to=""></NavLink></li> */}
         {
             user && <>
                 <li> <NavLink to="/dashboard" className={({isActive})=> isActive ? "font-bold border border-white rounded-2xl py-1" : ""}>Dashboard</NavLink> </li>
@@ -25,7 +54,11 @@ const Navbar = () => {
         logOut();
     }
     return (
-        <div className="navbar bg-[#4F5CC3] shadow-sm md:px-8">
+        <div className={`navbar md:px-8 fixed w-full top-0 z-50 transition-all duration-300 ${
+            scrolled
+            ? "bg-[#4F5CC3] shadow-lg"
+            : "bg-[#4F5CC3]/80 backdrop-blur-sm"
+        }`}>
             <div className="navbar-start">
                 <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,6 +82,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
+                
+                <button onClick={toggleTheme} className="btn btn-sm rounded-full">
+                {theme === "light" ? "🌙" : "☀️"}
+                </button>
+
                 {
                     user ? 
                     <>

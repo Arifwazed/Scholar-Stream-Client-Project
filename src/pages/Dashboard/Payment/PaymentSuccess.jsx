@@ -43,7 +43,7 @@ const PaymentSuccess = () => {
                 <img src={icon} className='h-30 w-30' alt="" />
                 <h1 className="text-3xl font-semibold text-white my-3">Payment SuccessFul</h1>
             </div>
-            <div className='bg-linear-to-r from-blue-50 to-purple-50 rounded-b-2xl shadow p-5 space-y-2'>
+            <div className='bg-linear-to-r from-blue-100 to-purple-100 rounded-b-2xl shadow p-5 space-y-2'>
                 <h2 className="text-2xl text-center font-semibold">Payment Details</h2>
                 <div className='flex justify-between'>
                     <p className='text-gray-700'>Scholarship Name:</p>

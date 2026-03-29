@@ -14,16 +14,16 @@ import bbc from '../../../assets/brands/bbc.png'
 const Brand = () => {
     const brands = [amazon,amazon_vector,casio,moonstar,randstad,star,start_people,bbc];
     return (
-        <div className=' py-12'>
+        <div className='py-12'>
             <div className='text-center mb-8'>
                 
-                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">In the Spotlight</span></h2>
-                <p className='my-3 text-lg md:text-xl text-gray-600'>ScholarStream has been highlighted by top magazines, media outlets, and educational platforms.</p>
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">In the Spotlight</span></h2>
+                <p className='my-3 text-lg md:text-xl text-base-100'>ScholarStream has been highlighted by top magazines, media outlets, and educational platforms</p>
             </div>
 
-            <Marquee className='flex gap-10 font-semibold' pauseOnHover={true} speed={80}>
+            <Marquee className='flex gap-10 font-semibold text-base-100' pauseOnHover={true} speed={80}>
                 {
-                    brands.map((logo,index) => <img key={index} src={logo} className='mr-20 md:mr-50' alt="" />)
+                    brands.map((logo,index) => <img key={index} src={logo} className='mr-20 md:mr-50 ' alt="" />)
                 }
             </Marquee>
 

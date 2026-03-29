@@ -40,9 +40,9 @@ const MyProfile = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="text-3xl md:text-4xl font-bold mb-8 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+        className="text-3xl md:text-4xl font-bold mb-8 "
         >
-        <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text">My Profile</span> 
+        <span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">My Profile</span> 
         </motion.h1>
 
         {/* Profile Wrapper */}
@@ -73,7 +73,7 @@ const MyProfile = () => {
             </div>
 
             {/* User Info */}
-            <div className="flex-1 text-center md:text-left">
+            <div className="flex-1 text-center md:text-left w-full">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
                 {user.displayName}
                 </h2>
@@ -83,25 +83,26 @@ const MyProfile = () => {
 
                 {/* Info Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6 text-sm text-gray-700">
-                <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3">
-                    <Mail className="h-4 w-4 text-blue-600" />
-                    <span className="truncate">{userInfo.email}</span>
-                </div>
+                
+                    <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3 border border-pink-200">
+                        <Mail className="h-4 w-4 text-blue-600" />
+                        <span className="truncate">{userInfo.email}</span>
+                    </div>
 
-                <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3">
-                    <Phone className="h-4 w-4 text-purple-600" />
-                    <span>{userInfo.phone ? userInfo.phone : '+880 1XXXXXXXXX'}</span>
-                </div>
+                    <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3 border border-pink-200">
+                        <Phone className="h-4 w-4 text-purple-600" />
+                        <span>{userInfo.phone ? userInfo.phone : '+880 1XXXXXXXXX'}</span>
+                    </div>
 
-                <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3">
-                    <MapPin className="h-4 w-4 text-blue-600" />
-                    <span>{userInfo.location ? userInfo.location: 'not set yet'}</span>
-                </div>
+                    <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur rounded-xl p-3 border border-pink-200">
+                        <MapPin className="h-4 w-4 text-blue-600" />
+                        <span>{userInfo.location ? userInfo.location: 'not set yet'}</span>
+                    </div>
 
-                <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100backdrop-blur rounded-xl p-3">
-                    <Calendar className="h-4 w-4 text-purple-600" />
-                    <span>Joined {formatDate(userInfo.createdAt)}</span>
-                </div>
+                    <div className="flex items-center gap-3 bg-linear-to-r from-blue-100 to-purple-100backdrop-blur rounded-xl p-3 border border-pink-200">
+                        <Calendar className="h-4 w-4 text-purple-600" />
+                        <span>Joined {formatDate(userInfo.createdAt)}</span>
+                    </div>
                 </div>
             </div>
             </div>

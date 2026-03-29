@@ -9,10 +9,10 @@ import SuccessCard from './SuccessCard';
 const Success = ({storiesPromise}) => {
     const stories = use(storiesPromise);
     return (
-        <div className='py-12'>
+        <div className='py-14'>
             <div className='text-center mb-8'>
-                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Real Scholarship Success Stories</span></h2>
-                <p className='my-3 text-lg md:text-xl text-gray-600'>Discover inspiring journeys from students who turned challenges into opportunities through scholarships.</p>
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">Real Scholarship Success Stories</span></h2>
+                <p className='my-3 text-lg md:text-xl text-base-100'>Discover inspiring journeys from students who turned challenges into opportunities through scholarships</p>
             </div>
             
             <div className='px-4 md:px-0'>

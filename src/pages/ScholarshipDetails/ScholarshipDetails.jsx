@@ -65,7 +65,10 @@ const ScholarshipDetails = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, pay it!"
+      confirmButtonText: "Yes, pay it!",
+      customClass: {
+        popup: 'my-swal-bg', // Apply custom background class
+      }
       }).then((result) => {
       if (result.isConfirmed) {
         const applicationInfo = {
@@ -99,8 +102,9 @@ const ScholarshipDetails = () => {
   }
 
   return (
-    <div className="bg-[#e7f4ff] py-10">
-      <div className="max-w-7xl mx-auto p-6 bg-white/60 backdrop-blur rounded-3xl shadow-lg">
+    <div className="bg-linear-to-tr from-(--color-gradient-start) to-(--color-gradient-end) pb-10 pt-25 md:pt-30">
+      {/* bg-[#e7f4ff] */}
+      <div className="max-w-7xl mx-auto p-6 bg-linear-to-r from-blue-50 to-purple-50  rounded-3xl shadow-lg">
 
         {/* ---------------- IMAGE SECTION ---------------- */}
         <div className="w-full h-72 rounded-3xl shadow-md bg-white mb-8 overflow-hidden">
@@ -112,10 +116,10 @@ const ScholarshipDetails = () => {
         </div>
 
         {/* ---------------- MAIN INFO ---------------- */}
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-4 text-black">
 
           {/* Title */}
-          <h1 className="text-4xl font-bold">{scholarship.scholarshipName}</h1>
+          <h1 className="text-4xl font-bold ">{scholarship.scholarshipName}</h1>
           <h2 className="text-2xl font-semibold text-gray-700">
             {scholarship.universityName}
           </h2>
@@ -138,7 +142,7 @@ const ScholarshipDetails = () => {
           {/* Info Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 
-            <div className="p-4 rounded-2xl bg-white shadow hover:shadow-lg transition">
+            <div className="p-4 rounded-2xl bg-white  shadow hover:shadow-lg transition">
               <p className="text-lg">
                 <span className="font-semibold">World Rank:</span>{" "}
                 {scholarship.universityWorldRank}
@@ -170,7 +174,7 @@ const ScholarshipDetails = () => {
           </div>
 
           {/* ---------------- DESCRIPTION ---------------- */}
-          <div className="mt-8 p-6 bg-linear-to-r from-blue-50 to-purple-50 rounded-2xl shadow">
+          <div className="mt-8 p-6 bg-white rounded-2xl shadow">
             <h3 className="text-2xl font-semibold mb-2">
               Scholarship Description
             </h3>

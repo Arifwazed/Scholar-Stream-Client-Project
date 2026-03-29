@@ -7,7 +7,7 @@ const AdminDashboardHome = () => {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
                 {/* My Profile */}
-                <Link to="/dashboard/my-profile" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 border border-purple-100  shadow-sm hover:shadow-md transition">
+                <Link to="/dashboard/my-profile" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100  shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         strokeWidth={2} stroke="currentColor"
@@ -25,7 +25,7 @@ const AdminDashboardHome = () => {
                 </Link>
 
                 {/* Add Scholarship */}
-                <Link to="/dashboard/add-scholarship" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 border border-purple-100  shadow-sm hover:shadow-md transition">
+                <Link to="/dashboard/add-scholarship" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100  shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         strokeWidth={2} stroke="currentColor"
@@ -43,7 +43,7 @@ const AdminDashboardHome = () => {
                 </Link>
 
                 {/* Manage Scholarships */}
-                <Link to="/dashboard/manage-scholarships" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 border border-purple-100  shadow-sm hover:shadow-md transition">
+                <Link to="/dashboard/manage-scholarships" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100  shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         strokeWidth={2} stroke="currentColor"
@@ -61,7 +61,7 @@ const AdminDashboardHome = () => {
                 </Link>
 
                 {/* Manage Users */}
-                <Link to="/dashboard/manage-users" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 border border-purple-100  shadow-sm hover:shadow-md transition">
+                <Link to="/dashboard/manage-users" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100  shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         strokeWidth={2} stroke="currentColor"
@@ -79,7 +79,7 @@ const AdminDashboardHome = () => {
                 </Link>
 
                 {/* Analytics */}
-                <Link to="/dashboard/analytics" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 border border-purple-100  shadow-sm hover:shadow-md transition">
+                <Link to="/dashboard/analytics" className="flex gap-4 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100  shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         strokeWidth={2} stroke="currentColor"

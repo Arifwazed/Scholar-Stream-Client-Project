@@ -6,7 +6,7 @@ const SuccessCard = ({story}) => {
     return (
         <div className="w-full max-w-lg bg-white shadow-lg rounded-xl p-3 md:p-6">
                     {/* Quote Icon */}
-                    <FaQuoteLeft className="text-teal-200 text-4xl mb-3" />
+                    <FaQuoteLeft className="text-teal-200 text-xl mb-3" />
         
                     {/* Text */}
                     <p className="text-gray-600 mb-6">

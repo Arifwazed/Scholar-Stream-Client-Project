@@ -22,7 +22,7 @@ const AllScholarshipsCard = ({scholarship}) => {
                 {/* Info */}
                 <div className="mt-4 space-y-2">
                     {/* University Name */}
-                    <h3 className="text-xl font-semibold">{scholarship.universityName}</h3>
+                    <h3 className="text-xl font-semibold text-black">{scholarship.universityName}</h3>
 
                     {/* Scholarship Category */}
                     <p className="text-base text-gray-600">
@@ -30,7 +30,7 @@ const AllScholarshipsCard = ({scholarship}) => {
                     </p>
 
                     {/* Badge Tags */}
-                    <div className=" flex flex-wrap gap-2">
+                    <div className=" line-clamp-1 space-x-3">
                         {scholarship.subjectCategory.split(", ").map((subject, index) => (
                         <span
                             key={index}
@@ -40,7 +40,7 @@ const AllScholarshipsCard = ({scholarship}) => {
                         </span>
                         ))}
                         <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                        {scholarship.degree}
+                        {scholarship.degree} 
                         </span>
                         <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">
                         {scholarship.scholarshipCategory}
@@ -54,7 +54,7 @@ const AllScholarshipsCard = ({scholarship}) => {
                     </div>
 
                     {/* Application Fees */}
-                    <p className="text-base">
+                    <p className="text-base text-black">
                     <span className="font-semibold">Application Fees:</span>{" "}
                     {scholarship.applicationFees ? `$ ${scholarship.applicationFees}` : "No Fees"}
                     </p>

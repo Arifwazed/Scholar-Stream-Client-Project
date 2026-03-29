@@ -56,7 +56,7 @@ const UpdateScholarship = () => {
               Update Scholarship
             </h2>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 text-black">
 
               {/* Scholarship Name */}
               <div>
@@ -64,7 +64,7 @@ const UpdateScholarship = () => {
                 <input
                   type="text"
                   {...register("scholarshipName", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Enter scholarship name"
                   defaultValue={scholarship.scholarshipName}
                 />
@@ -77,7 +77,7 @@ const UpdateScholarship = () => {
                 <input
                   type="text"
                   {...register("universityName", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Enter university name"
                   defaultValue={scholarship.universityName}
                 />
@@ -90,7 +90,7 @@ const UpdateScholarship = () => {
                 <input
                   type="text"
                   {...register("universityImage", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Direct image URL"
                   defaultValue={scholarship.universityImage}
                 />
@@ -104,7 +104,7 @@ const UpdateScholarship = () => {
                   <input
                     type="text"
                     {...register("universityCountry", { required: true })}
-                    className="input input-bordered w-full mt-1"
+                    className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                     placeholder="Country"
                     defaultValue={scholarship.universityCountry}
                   />
@@ -116,7 +116,7 @@ const UpdateScholarship = () => {
                   <input
                     type="text"
                     {...register("universityCity", { required: true })}
-                    className="input input-bordered w-full mt-1"
+                    className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                     placeholder="City"
                     defaultValue={scholarship.universityCity}
                   />
@@ -130,7 +130,7 @@ const UpdateScholarship = () => {
                 <input
                   type="number"
                   {...register("universityWorldRank", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1  rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="e.g. 200"
                   defaultValue={scholarship.universityWorldRank}
                 />
@@ -143,7 +143,7 @@ const UpdateScholarship = () => {
                 <input
                   type="text"
                   {...register("subjectCategory", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="e.g. Engineering, Medical, Business"
                   defaultValue={scholarship.subjectCategory}
                 />
@@ -154,16 +154,19 @@ const UpdateScholarship = () => {
 
               <div>
                 <label className="">Scholarship Category</label>
-                <select
-                  {...register("scholarshipCategory", { required: true })}
-                  defaultValue={scholarship.scholarshipCategory}
-                  className="select select-bordered w-full mt-1"
-                >
-                  <option disabled={true}>Select Category</option>
-                  <option value="Full Fund">Full Fund</option>
-                  <option value="Partial Fund">Partial Fund</option>
-                  <option value="Self Fund">Self Fund</option>
-                </select>
+                <div className="bg-linear-to-r from-blue-100 to-purple-100 rounded-xl mt-1">
+
+                  <select
+                    {...register("scholarshipCategory", { required: true })}
+                    defaultValue={scholarship.scholarshipCategory}
+                    className="select w-full rounded-xl border border-gray-300 bg-gray-100"
+                  >
+                    <option disabled={true}>Select Category</option>
+                    <option value="Full Fund">Full Fund</option>
+                    <option value="Partial Fund">Partial Fund</option>
+                    <option value="Self Fund">Self Fund</option>
+                  </select>
+                </div>
 
                 {errors.scholarshipCategory && (<p className="text-red-500 text-sm">Required</p>)}
               </div>
@@ -174,7 +177,7 @@ const UpdateScholarship = () => {
                 <select
                   {...register("degree", { required: true })}
                   defaultValue={scholarship.degree}
-                  className="select select-bordered w-full mt-1"
+                  className="select select-bordered w-full mt-1 rounded-xl bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary border border-gray-300"
                 >
                   <option disabled={true}>Select Degree</option>
                   <option value="Bachelor">Bachelor</option>
@@ -191,7 +194,7 @@ const UpdateScholarship = () => {
                 <input
                   type="number"
                   {...register("tuitionFees")}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="0 or leave empty"
                   defaultValue={scholarship.tuitionFees}
                 />
@@ -203,7 +206,7 @@ const UpdateScholarship = () => {
                 <input
                   type="number"
                   {...register("applicationFees", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Enter amount"
                   defaultValue={scholarship.applicationFees}
                 />
@@ -216,7 +219,7 @@ const UpdateScholarship = () => {
                 <input
                   type="number"
                   {...register("serviceCharge", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Enter amount"
                   defaultValue={scholarship.serviceCharge}
                 />
@@ -229,7 +232,7 @@ const UpdateScholarship = () => {
                 <input
                   type="date"
                   {...register("applicationDeadline", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   defaultValue={scholarship.applicationDeadline}
                 />
                 {errors.applicationDeadline && <p className="text-red-500 text-sm">Required</p>}
@@ -241,7 +244,7 @@ const UpdateScholarship = () => {
                 <input
                   type="date"
                   {...register("scholarshipPostDate", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   defaultValue={scholarship.scholarshipPostDate}
                 />
                 {errors.scholarshipPostDate && <p className="text-red-500 text-sm">Required</p>}
@@ -253,7 +256,7 @@ const UpdateScholarship = () => {
                 <input
                   type="email"
                   {...register("postedUserEmail", { required: true })}
-                  className="input input-bordered w-full mt-1"
+                  className="input input-bordered w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Enter your email"
                   defaultValue={scholarship.postedUserEmail}
                 />
@@ -265,7 +268,7 @@ const UpdateScholarship = () => {
                 <label className="">Scholarship Description</label>
                 <textarea
                   {...register("scholarshipDescription", { required: true })}
-                  className="textarea w-full mt-1"
+                  className="textarea w-full mt-1 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 backdrop-blur border border-gray-300"
                   placeholder="Scholarship Description"
                   defaultValue={scholarship.scholarshipDescription}
                 ></textarea>
@@ -273,7 +276,7 @@ const UpdateScholarship = () => {
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="btn btn-primary w-full mt-4">
+              <button type="submit" className="btn btn-primary text-white w-full mt-4">
                 Update Scholarship
               </button>
 

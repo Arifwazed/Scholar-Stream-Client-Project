@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaTrashAlt, FaUserCheck, FaUserShield, FaUserTimes } from 'react-icons/fa';
@@ -9,12 +9,26 @@ import Loading from '../../../components/Loading/Loading';
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
     const [roleFilter, setRoleFilter] = useState("");
+    const [searchText,setSearchText]  = useState('');
+    // const [debouncedSearch, setDebouncedSearch] = useState("");
+
+    // useEffect(() => {
+    // const timer = setTimeout(() => {
+    //     setDebouncedSearch(searchText);
+    // }, 500);
+
+    // return () => clearTimeout(timer);
+    // }, [searchText]);
 
     const {data : users = [],refetch,isLoading } = useQuery({
-        queryKey: ['allUsers',roleFilter],
+        queryKey: ['allUsers',roleFilter,searchText],
         queryFn: async () => {
             const res = await axiosSecure.get('/users',{
-                params: roleFilter ? { role: roleFilter } : {}
+                params: {
+                    // role: roleFilter ?  roleFilter : {},
+                    role: roleFilter || "",
+                    search: searchText || ""
+                }
             });
             return res.data;
         }
@@ -120,11 +134,11 @@ const ManageUsers = () => {
 
     return (
         <div className="p-4 space-y-3">
-            <h1 className="text-3xl md:text-4xl font-bold text-center "> <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Manage Users: {users.length}</span></h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-center "> <span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">Manage Users: {users.length}</span></h1>
             {/*---- search ----*/}
             {/* <p className='my-2'>search input: {searchText}</p> */}
             <div className='flex justify-between items-center gap-2'>
-                <label className="input my-3">
+                <label className="input my-3 bg-linear-to-r from-blue-50 to-purple-50 text-black">
                     <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                         strokeLinejoin="round"
@@ -137,19 +151,22 @@ const ManageUsers = () => {
                         <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
-                    
+                    <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow bg-transparent outline-none" placeholder="Search" />  
                 </label>
+
+                {/* sort */}
+                <div className='bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-1px shadow-sm'>
                 <select
                     value={roleFilter}
                     onChange={(e) => setRoleFilter(e.target.value)}
-                    className="select select-bordered w-52"
+                    className="select select-bordered w-52 bg-white/90 backdrop-blur-md border-none text-black"
                     >
                     <option value="">All Roles</option>
                     <option value="Student">Student</option>
                     <option value="Moderator">Moderator</option>
                     <option value="Admin">Admin</option>
                 </select>
+                </div>
 
             </div>
 

@@ -37,22 +37,22 @@ const Analytics = () => {
 
   return (
     <div className="p-6 space-y-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-center ">📊 <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Platform Analytics</span></h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center ">📊 <span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">Platform Analytics</span></h1>
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white shadow rounded-xl p-6 text-center">
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6 text-center">
           <h2 className="text-gray-500">Total Users</h2>
           <p className="text-3xl font-bold text-blue-600">
             <CountUp end={totalUsers} duration={1.5} />
           </p>
         </div>
-        <div className="bg-white shadow rounded-xl p-6 text-center">
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6 text-center">
           <h2 className="text-gray-500">Total Scholarships</h2>
           <p className="text-3xl font-bold text-green-600">
             <CountUp end={totalScholarships} duration={1.5} />
           </p>
         </div>
-        <div className="bg-white shadow rounded-xl p-6 text-center">
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6 text-center">
           <h2 className="text-gray-500">Total Fees Collected</h2>
           <p className="text-3xl font-bold text-purple-600">
             $<CountUp end={totalFeesCollected} duration={1.5} />
@@ -64,8 +64,8 @@ const Analytics = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
         {/* Pie Chart - University */}
-        <div className="bg-white shadow rounded-xl p-6">
-          <h3 className="text-lg font-semibold mb-4 text-center">Applications by University (Pie)</h3>
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4 text-center text-black">Applications by University (Pie)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -89,8 +89,8 @@ const Analytics = () => {
         </div>
 
         {/* Bar Chart - University */}
-        <div className="bg-white shadow rounded-xl p-6">
-          <h3 className="text-lg font-semibold mb-4 text-center">Applications by University (Bar)</h3>
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4 text-center text-black">Applications by University (Bar)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={applicationsByUniversity}>
               <XAxis dataKey="university" />
@@ -103,8 +103,8 @@ const Analytics = () => {
         </div>
 
         {/* Pie Chart - Scholarship Category */}
-        <div className="bg-white shadow rounded-xl p-6">
-          <h3 className="text-lg font-semibold mb-4 text-center">Applications by Scholarship Category (Pie)</h3>
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4 text-center text-black">Applications by Scholarship Category (Pie)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -128,8 +128,8 @@ const Analytics = () => {
         </div>
 
         {/* Bar Chart - Scholarship Category */}
-        <div className="bg-white shadow rounded-xl p-6">
-          <h3 className="text-lg font-semibold mb-4 text-center">Applications by Scholarship Category (Bar)</h3>
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4 text-center text-black">Applications by Scholarship Category (Bar)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={applicationsByCategory}>
               <XAxis dataKey="category" />
@@ -143,8 +143,8 @@ const Analytics = () => {
       </div>
 
       {/* Line Chart - Growth Over Time */}
-      <div className="bg-white shadow rounded-xl p-6">
-        <h3 className="text-lg font-semibold mb-4 text-center">Applications Growth Over Time</h3>
+      <div className="bg-linear-to-r from-blue-50 to-purple-50 shadow rounded-xl p-6">
+        <h3 className="text-lg font-semibold mb-4 text-center text-black">Applications Growth Over Time</h3>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={applicationsOverTime}>
             <XAxis dataKey="date" />

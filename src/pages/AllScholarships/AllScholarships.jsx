@@ -13,14 +13,14 @@ const AllScholarships = () => {
     const [filterType, setFilterType] = useState(""); // country | category
     const [filterValue, setFilterValue] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 8;
 
     const {data : allScholarship = [],isLoading} = useQuery({
         queryKey: ['allScholarship',searchText,filterType,filterValue,currentPage],
         queryFn: async () => {
             // const res = await axiosSecure.get(`/scholarships?searchText=${searchText}`,{
             const res = await axiosSecure.get(`/scholarships`,{
-                // params: roleFilter ? { role: roleFilter } : {}
+                // params: roleFilter ? { role: roleFilter } : {} 
                 params: {
                     searchText,
                     page: currentPage,
@@ -48,18 +48,18 @@ const AllScholarships = () => {
 
     console.log("from all scholarship: ", scholarships)
     return (
-        <div className='bg-[#e7f4ff] py-10'>
+        <div className='bg-linear-to-tr from-(--color-gradient-start) to-(--color-gradient-end) pb-10 pt-25 md:pt-30'>
             <div className='text-center mb-8'>
-                <h2 className="text-primary text-4xl  font-semibold">Featured Scholarships</h2>
-                <p className='my-3 text-lg text-gray-600'>Explore top scholarship opportunities selected to help you achieve your academic goals.</p>
+                <h2 className="text-primary text-4xl md:text-5xl font-semibold"><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">Featured Scholarships</span></h2>
+                <p className='my-3 text-lg md:text-xl text-base-100'>Explore top scholarship opportunities selected to help you achieve your academic goals</p>
             </div>
+
             <div className="mx-5 md:mx-10 mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            
                 {/* search */}
-                <div className='w-full md:w-1/2 '>
+                <div className='w-1/2 '>
                     {/* <p className='my-2'>search input: {searchText}</p> */}
-                    <label className="input md:w-1/2">
-                        <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <label className="input md:w-1/2 bg-linear-to-r from-blue-50 to-purple-50">
+                        <svg className="h-[1em] opacity-50 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g
                             strokeLinejoin="round"
                             strokeLinecap="round"
@@ -71,29 +71,32 @@ const AllScholarships = () => {
                             <path d="m21 21-4.3-4.3"></path>
                             </g>
                         </svg>
-                        <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />  
+                        <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow text-black" placeholder="Search" />  
                     </label>
                 </div>
                 {/* sort */}
-                <div className="flex gap-3 md:w-1/2 justify-end ">
-                    <select
-                    value={filterType}
-                    onChange={(e) => {
-                        setFilterType(e.target.value);
-                        setFilterValue("");
-                    }}
-                    className="select select-bordered w-1/2 md:w-1/3"
-                    >
-                    <option value="">All Scholarship</option>
-                    <option value="country">Country</option>
-                    <option value="category">Category</option>
-                    </select>
+                <div className="flex gap-3 md:w-1/2 md:justify-end ">
+                    <div className='w-1/2 md:w-1/3 bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-1px shadow-sm'>
+                        <select
+                            value={filterType}
+                            onChange={(e) => {
+                                setFilterType(e.target.value);
+                                setFilterValue("");
+                            }}
+                            className="select w-full bg-white/80 backdrop-blur-md border-none text-black"
+                        >
+                        <option value="">All Scholarship</option>
+                        <option value="country">Country</option>
+                        <option value="category">Category</option>
+                        </select>
+                    </div>
 
                     {filterType && (
+                    <div className='w-1/2 md:w-1/3 bg-linear-to-r from-blue-100 to-purple-100 rounded-xl p-1px shadow-sm'>
                     <select
                         value={filterValue}
                         onChange={(e) => setFilterValue(e.target.value)}
-                        className="select select-bordered w-1/2 md:w-1/3"
+                        className="select w-full bg-white/80 backdrop-blur-md border-none text-black"
                     >
                         <option value="">Select {filterType}</option>
                         {filterType === "country" && (
@@ -111,12 +114,13 @@ const AllScholarships = () => {
                         </>
                         )}
                     </select>
+                    </div>
                     )}
                 </div>
 
             </div>
             {/* card section */}
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mx-5 md:mx-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-5 md:mx-10'>
                 {
                     currentScholarships.map((scholarship,index) =>
                         <AllScholarshipsCard key={index} scholarship={scholarship}></AllScholarshipsCard>

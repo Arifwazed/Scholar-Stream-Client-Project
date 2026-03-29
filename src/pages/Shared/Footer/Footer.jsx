@@ -1,19 +1,21 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
         <div>
             <footer className="footer footer-horizontal footer-center bg-[#4F5CC3] text-primary-content p-10">
-                <aside>
+                {/* <aside> */}
                     <Logo></Logo>
-                    <p className="font-bold">
-                    ACME Industries Ltd.
-                    <br />
-                    Providing reliable tech since 1992
-                    </p>
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-                </aside>
+                    
+                {/* </aside> */}
+                <nav className="grid grid-flow-col gap-4 -m-3">
+                    <Link to="/aboutUs" className="link link-hover">About us</Link>
+                    <Link to="/contactUs" className="link link-hover">Contact</Link>
+                    <Link to="" className="link link-hover">Jobs</Link>
+                    <Link to="" className="link link-hover">Press kit</Link>
+                </nav>
                 <nav>
                     <div className="grid grid-flow-col gap-4">
                     <a>
@@ -51,6 +53,9 @@ const Footer = () => {
                     </a>
                     </div>
                 </nav>
+                <aside>
+                    <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+                </aside>
             </footer>
         </div>
     );

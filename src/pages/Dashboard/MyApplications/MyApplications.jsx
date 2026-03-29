@@ -34,7 +34,10 @@ const MyApplications = () => {
                 Swal.fire({
                     title: "Added Successfully!",
                     text: ``,
-                    icon: "success"
+                    icon: "success",
+                    customClass: {
+                        popup: "my-swal-bg"    
+                    }
                 });
             }
         })
@@ -104,7 +107,10 @@ const MyApplications = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                popup: "my-swal-bg"    
+            }
             }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/applications/${application._id}`)
@@ -114,7 +120,10 @@ const MyApplications = () => {
                         refetch()
                         Swal.fire({
                             title: `Application has been deleted!`,
-                            icon: "success"
+                            icon: "success",
+                            customClass: {
+                                popup: "my-swal-bg"    
+                            }
                         });
                     }
                 })
@@ -143,7 +152,10 @@ const MyApplications = () => {
                     icon: "success",
                     title: "Review SuccessFully Added",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    customClass: {
+                        popup: "my-swal-bg"    
+                    }
                 });
             } 
         })
@@ -154,9 +166,9 @@ const MyApplications = () => {
 
 
     return (
-        <div className="p-4 space-y-8">
+        <div className="p-4 space-y-8 ">
             {/* <h1 className="text-4xl text-center mb-5">My Application: {myApplications.length}</h1> */}
-            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Application: {myApplications.length}</span></h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">My Application: {myApplications.length}</span></h1>
             {/*---- table ----*/}
             <div className="overflow-x-auto rounded-box border border-base-content/5">
                 <table className="table">
@@ -268,12 +280,12 @@ const MyApplications = () => {
 
                 {/* for Edit modal */}
                 <dialog id="editModal" className="modal modal-bottom sm:modal-middle ">
-                    <div className="modal-box">
+                    <div className="modal-box bg-linear-to-r from-blue-50 to-purple-50 text-gray-700">
                         <h3 className="font-semibold text-lg mb-2">Add Contact Info & Note</h3>
                         <form onSubmit={handleEditSubmit(handleEdit)} className='w-full'>
                             <div>
-                                <label className="label text-sm my-1">
-                                <span className="">Phone Number</span>
+                                <label className="label text-sm my-1 text-gray-700">
+                                    <span className="label-text">Phone Number</span>
                                 </label>
                                 <input
                                 {...registerEdit("phone", { required: true })}
@@ -281,14 +293,14 @@ const MyApplications = () => {
                                 name="phone"
                                 defaultValue={selectedApplication?.phone || ""}
                                 placeholder="e.g. 01XXXXXXXXX"
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200"
                                 />
                             </div>
                             <div>
-                                <label className="label text-sm my-1">
+                                <label className="label text-sm my-1 text-gray-700">
                                     <span className="label-text">Note to Admin</span>
                                 </label>
-                                <textarea {...registerEdit("userNote", { required: true })} className="textarea h-24 w-full" placeholder="Write any message or additional information..."></textarea>
+                                <textarea {...registerEdit("userNote", { required: true })} className="textarea h-24 w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200" placeholder="Write any message or additional information..."></textarea>
                             </div>
                             
                             <div className='modal-action flex justify-between mt-4'>
@@ -307,7 +319,7 @@ const MyApplications = () => {
 
                 {/* for details modal */}
                 <dialog id="detailsModal" className="modal modal-middle">
-                    <div className="modal-box max-w-4xl p-0 rounded-2xl">
+                    <div className="modal-box max-w-4xl p-0 rounded-2xl bg-linear-to-r from-blue-50 to-purple-50">
 
                         {/* Header */}
                         <div className="flex justify-between items-center px-6 py-4 border-b bg-linear-to-r from-blue-500 to-indigo-500 text-white rounded-t-2xl">
@@ -323,105 +335,105 @@ const MyApplications = () => {
                         {/* Content */}
                         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        {/* Applicant Info */}
-                        <div className="bg-base-100 rounded-xl shadow p-5 space-y-3">
-                            <h4 className="text-lg font-semibold border-b pb-2">👤 Applicant Information</h4>
+                            {/* Applicant Info */}
+                            <div className="bg-linear-to-r from-blue-100 to-purple-100 rounded-xl shadow p-5 space-y-3 text-gray-700 border border-pink-200">
+                                <h4 className="text-lg font-semibold border-b pb-2 text-blue-700">👤 Applicant Information</h4>
 
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Name:</span>
-                            <span className="font-medium">{selectedApplication?.userName}</span>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Name:</span>
+                                <span className="font-medium">{selectedApplication?.userName}</span>
+                                </div>
+
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Email:</span>
+                                <span className="font-medium">{selectedApplication?.userEmail}</span>
+                                </div>
+
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Phone:</span>
+                                <span className="font-medium">{selectedApplication?.phone || 'not added'}</span>
+                                </div>
+
+                                
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Application Status:</span>
+                                <span className={`badge ${selectedApplication?.applicationStatus === "pending" ? "badge-warning" : "badge-info"} badge-sm`}>
+                                    {selectedApplication?.applicationStatus}
+                                </span>
+                                </div>
+
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Payment Status:</span>
+                                <span className={`badge ${selectedApplication?.paymentStatus === "paid" ? "badge-success" : "badge-error"} badge-sm`}>
+                                    {selectedApplication?.paymentStatus}
+                                </span>
+                                </div>
                             </div>
 
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Email:</span>
-                            <span className="font-medium">{selectedApplication?.userEmail}</span>
-                            </div>
+                            {/* Scholarship Info */}
+                            <div className="bg-linear-to-r from-blue-100 to-purple-100 rounded-xl shadow p-5 space-y-3 text-gray-700 border border-pink-200">
+                                <h4 className="text-lg font-semibold border-b pb-2 text-blue-700">🎓 Scholarship Information</h4>
 
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Phone:</span>
-                            <span className="font-medium">{selectedApplication?.phone || 'not added'}</span>
-                            </div>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">University:</span>
+                                <span className="font-medium">{selectedApplication?.universityName}</span>
+                                </div>
 
-                            
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Application Status:</span>
-                            <span className={`badge ${selectedApplication?.applicationStatus === "pending" ? "badge-warning" : "badge-info"} badge-sm`}>
-                                {selectedApplication?.applicationStatus}
-                            </span>
-                            </div>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Category:</span>
+                                <span className="font-medium">{selectedApplication?.scholarshipCategory}</span>
+                                </div>
 
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Payment Status:</span>
-                            <span className={`badge ${selectedApplication?.paymentStatus === "paid" ? "badge-success" : "badge-error"} badge-sm`}>
-                                {selectedApplication?.paymentStatus}
-                            </span>
-                            </div>
-                        </div>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Degree:</span>
+                                <span className="font-medium">{selectedApplication?.degree}</span>
+                                </div>
 
-                        {/* Scholarship Info */}
-                        <div className="bg-base-100 rounded-xl shadow p-5 space-y-3">
-                            <h4 className="text-lg font-semibold border-b pb-2">🎓 Scholarship Information</h4>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Application Fee:</span>
+                                <span className="font-medium">${selectedApplication?.applicationFees}</span>
+                                </div>
 
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">University:</span>
-                            <span className="font-medium">{selectedApplication?.universityName}</span>
+                                <div className="flex justify-between">
+                                <span className="text-gray-500">Service Charge:</span>
+                                <span className="font-medium">${selectedApplication?.serviceCharge}</span>
+                                </div>
                             </div>
-
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Category:</span>
-                            <span className="font-medium">{selectedApplication?.scholarshipCategory}</span>
-                            </div>
-
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Degree:</span>
-                            <span className="font-medium">{selectedApplication?.degree}</span>
-                            </div>
-
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Application Fee:</span>
-                            <span className="font-medium">${selectedApplication?.applicationFees}</span>
-                            </div>
-
-                            <div className="flex justify-between">
-                            <span className="text-gray-500">Service Charge:</span>
-                            <span className="font-medium">${selectedApplication?.serviceCharge}</span>
-                            </div>
-                        </div>
                         </div>
 
                         {/* Footer */}
-                        <div className="modal-action px-6 py-4 border-t bg-gray-50 rounded-b-2xl">
-                        <button
-                            onClick={() => document.getElementById("detailsModal").close()}
-                            className="btn btn-outline btn-primary w-full md:w-auto"
-                        >
-                            Close
-                        </button>
+                        <div className="modal-action px-6 py-4 border-t border-blue-700 bg-linear-to-r from-blue-50 to-purple-50 rounded-b-2xl">
+                            <button
+                                onClick={() => document.getElementById("detailsModal").close()}
+                                className="btn btn-outline btn-primary w-full md:w-auto"
+                            >
+                                Close
+                            </button>
                         </div>
                     </div>
                 </dialog>
                 
                 {/* for review modal */}
                 <dialog id="reviewModal" className="modal modal-bottom sm:modal-middle ">
-                    <div className="modal-box">
+                    <div className="modal-box bg-linear-to-r from-blue-50 to-purple-50 text-gray-700">
                         <h3 className="font-semibold text-lg mb-2">Add Review</h3>
                         <form onSubmit={handleReviewSubmit(handleReview)} className='w-full'>
                             <div>
-                                <label className="label text-sm my-1">
+                                <label className="label text-sm my-1 text-gray-700">
                                 <span className="">Rating</span>
                                 </label>
                                 <input
                                 {...registerReview("ratingPoint", { required: true })}
                                 type="number"
                                 placeholder="any 1 to 5"
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200"
                                 />
                             </div>
                             <div>
-                                <label className="label text-sm my-1">
+                                <label className="label text-sm my-1 text-gray-700">
                                     <span className="label-text">Comment</span>
                                 </label>
-                                <textarea {...registerReview("reviewComment", { required: true })} className="textarea h-24 w-full" placeholder="Write any message or additional information..."></textarea>
+                                <textarea {...registerReview("reviewComment", { required: true })} className="textarea h-24 w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200" placeholder="Write any message or additional information..."></textarea>
                             </div>
                             
                             <div className='modal-action flex justify-between mt-4'>

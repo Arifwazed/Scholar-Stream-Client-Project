@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import { RiEdit2Fill } from 'react-icons/ri';
@@ -8,10 +8,16 @@ import { Link } from 'react-router';
 
 const ManageScholarships = () => {
     const axiosSecure = useAxiosSecure();
+    const [searchText,setSearchText]  = useState('');
+    
     const {data : allScholarship = [],refetch} = useQuery({
-        queryKey: ['allScholarship'],
+        queryKey: ['allScholarship',searchText],
         queryFn: async () => {
-            const res = await axiosSecure.get('/scholarships');
+            const res = await axiosSecure.get('/scholarships',{
+                params: {
+                    searchText
+                }
+            });
             return res.data;
         }
     })
@@ -50,13 +56,13 @@ const ManageScholarships = () => {
     }
     return (
         <div className="p-4 space-y-3">
-            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Manage Scholarships: {allScholarship.length}</span></h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">Manage Scholarships: {allScholarship.length}</span></h1>
             {/* search */}
             {/* <p className='my-2'>search input: {searchText}</p> */}
             <div className=' text-center'>
 
-                <label className="input my-3 md:w-lg">
-                    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <label className="input my-3 md:w-lg bg-linear-to-r from-blue-50 to-purple-50 text-black">
+                    <svg className="h-[1em] opacity-50 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                         strokeLinejoin="round"
                         strokeLinecap="round"
@@ -68,7 +74,7 @@ const ManageScholarships = () => {
                         <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input onChange={(e)=>setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
+                    <input onChange={(e)=> setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
                     
                 </label>
             </div>

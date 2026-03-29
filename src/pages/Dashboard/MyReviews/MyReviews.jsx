@@ -39,7 +39,10 @@ const MyReviews = () => {
                         refetch()
                         Swal.fire({
                             title: `Review has been deleted!`,
-                            icon: "success"
+                            icon: "success",
+                            customClass: {
+                                popup: "my-swal-bg"    
+                            }
                         });
                     }
                 })
@@ -61,7 +64,10 @@ const MyReviews = () => {
                     icon: "success",
                     title: "Review SuccessFully Updated",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    customClass: {
+                        popup: "my-swal-bg"    
+                    }
                 });
             } 
         })
@@ -72,7 +78,7 @@ const MyReviews = () => {
     return (
         <div className="p-4 space-y-8">
             {/* <h1 className="text-4xl text-center mb-5">My Reviews: {myReviews.length}</h1> */}
-            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">My Reviews: {myReviews.length}</span></h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-center "><span className="bg-linear-to-r from-pink-500 to-blue-600 bg-clip-text text-transparent">My Reviews: {myReviews.length}</span></h1>
             <div className="overflow-x-auto rounded-box border border-base-content/5">
                 <table className="table">
                     {/* head */}
@@ -150,11 +156,11 @@ const MyReviews = () => {
                 </table>
                 {/* for review modal */}
                 <dialog id="reviewModal" className="modal modal-bottom sm:modal-middle ">
-                    <div className="modal-box">
+                    <div className="modal-box bg-linear-to-r from-blue-50 to-purple-50 text-gray-700">
                         <h3 className="font-semibold text-lg mb-2">Add Review</h3>
                         <form onSubmit={handleReviewSubmit(handleReview)} className='w-full'>
                             <div>
-                                <label className="label text-sm my-1">
+                                <label className="label text-sm my-1 text-gray-700">
                                 <span className="">Rating</span>
                                 </label>
                                 <input
@@ -162,14 +168,14 @@ const MyReviews = () => {
                                 type="number"
                                 placeholder="any 1 to 5"
                                 defaultValue={selectedReview?.ratingPoint || ""}
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200"
                                 />
                             </div>
                             <div>
-                                <label className="label text-sm my-1">
+                                <label className="label text-sm my-1 text-gray-700">
                                     <span className="label-text">Comment</span>
                                 </label>
-                                <textarea {...registerReview("reviewComment", { required: true })} className="textarea h-24 w-full" 
+                                <textarea {...registerReview("reviewComment", { required: true })} className="textarea h-24 w-full bg-linear-to-r from-blue-100 to-purple-100 border border-pink-200" 
                                 defaultValue={selectedReview?.reviewComment || ""}
                                 placeholder="Write any message or additional information...">
                                 

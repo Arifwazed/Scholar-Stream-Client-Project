@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const UserDashboardHome = () => {
     return (
@@ -6,7 +7,7 @@ const UserDashboardHome = () => {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
   
                 {/* My Profile */}
-                <div className="flex gap-5 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 shadow-sm border border-purple-100 hover:shadow-md transition">
+                <Link to='/dashboard/my-profile' className="flex gap-5 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100 shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-purple-100">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +19,7 @@ const UserDashboardHome = () => {
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0" />
                     </svg>
-                    </div>
+                    </div> 
 
                     <div>
                     <h3 className="text-xl font-semibold text-gray-800">My Profile</h3>
@@ -26,10 +27,10 @@ const UserDashboardHome = () => {
                         Update your account information and security settings.
                     </p>
                     </div>
-                </div>
+                </Link>
 
                 {/* My Applications */}
-                <div className="flex gap-5 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 shadow-sm border border-purple-100 hover:shadow-md transition">
+                <Link to="/dashboard/my-applications" className="flex gap-5 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100 shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -49,10 +50,10 @@ const UserDashboardHome = () => {
                         Track your scholarship applications and their current status.
                     </p>
                     </div>
-                </div>
+                </Link>
 
                 {/* My Reviews */}
-                <div className="flex gap-5 rounded-xl bg-linear-to-r from-blue-100 to-purple-100 p-6 shadow-sm border border-purple-100 hover:shadow-md transition">
+                <Link to="/dashboard/my-reviews" className="flex gap-5 rounded-xl bg-linear-to-r from-blue-50 to-purple-50 p-6 border border-purple-100 shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +73,7 @@ const UserDashboardHome = () => {
                         View and manage the reviews you have submitted.
                     </p>
                     </div>
-                </div>
+                </Link>
 
             </div>
 
