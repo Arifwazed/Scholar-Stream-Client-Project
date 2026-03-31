@@ -1,4 +1,9 @@
 # ScholarStream
+![React](https://img.shields.io/badge/React-18-blue)
+![Vite](https://img.shields.io/badge/Vite-fast-purple)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-utility--first-38BDF8)
+![Firebase](https://img.shields.io/badge/Firebase-Authentication-orange)
+![Deployment](https://img.shields.io/badge/Deployed-Firebase-success)
 
 ## 📌 Project Purpose
 
